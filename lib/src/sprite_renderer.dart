@@ -1,41 +1,29 @@
+import 'dart:ui' as ui;
 import 'dart:ui';
 
 import 'assets.dart';
-import 'sprite_base.dart';
-import 'sprite_batch.dart';
-import 'image_rect.dart';
+import 'sprite.dart';
 
-/// buffer and render a set of sprites per asset image
+/// render a single sprite
 class SpriteRenderer {
-  Map<String, SpriteBatch> spriteBatches = {};
+  Sprite sprite;
+  Paint paint = Paint();
 
-  /// remove all items from all sprite batch maps
-  void clear() {
-    spriteBatches.forEach((asset, spriteBatch) {
-      spriteBatch.clear();
-    });
-  }
+  SpriteRenderer(this.sprite);
 
-  /// add sprite to sprite batch map with asset name as key
-  void addSprite(SpriteBase sprite) {
-    ImageRect imageRect = sprite.imageRect;
-    if (!spriteBatches.containsKey(imageRect.image)) {
-      spriteBatches[imageRect.image] = SpriteBatch(Assets.instance.imageCache[imageRect.image]);
-    }
-    spriteBatches[imageRect.image].addSprite(sprite);
-  }
-
-  /// add a list of sprites
-  void addSpriteList(List<SpriteBase> sprites) {
-    sprites.forEach((sprite) {
-      addSprite(sprite);
-    });
-  }
-
-  /// render sprites effectively
   void render(Canvas canvas, Size size) {
-    spriteBatches.forEach((asset, spriteBatch) {
-      spriteBatch.render(canvas, size);
-    });
+    ui.Image image = Assets.instance.imageCache[sprite.imageRect.image];
+    if (sprite.imageRect.color != null) {
+      paint.colorFilter = ColorFilter.mode(sprite.imageRect.color, BlendMode.dstOver);
+    }
+    Rect src = sprite.imageRect.rect.asRect;
+    Rect dst = Rect.fromLTWH(0, 0, src.width, src.height);
+    canvas.save();
+    canvas.translate(sprite.transform.translate.dx, sprite.transform.translate.dy);
+    canvas.rotate(sprite.transform.rotation);
+    canvas.scale(sprite.transform.scale);
+    canvas.translate(-sprite.transform.anchor.dx, -sprite.transform.anchor.dy);
+    canvas.drawImageRect(image, src, dst, paint);
+    canvas.restore();
   }
 }

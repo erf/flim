@@ -9,10 +9,10 @@ import 'package:flim/flim.dart';
 import 'level.dart';
 
 class MyGame extends Game {
-  SpriteRenderer spriteRenderer = SpriteRenderer();
-  SpriteRenderer spriteRendererLayer1 = SpriteRenderer();
-  SpriteRenderer spriteRendererLayer2 = SpriteRenderer();
-  SpriteRenderer spriteRendererBenchmark = SpriteRenderer();
+  SpriteBatchMap spriteRenderer = SpriteBatchMap();
+  SpriteBatchMap spriteRendererLayer1 = SpriteBatchMap();
+  SpriteBatchMap spriteRendererLayer2 = SpriteBatchMap();
+  SpriteBatchMap spriteRendererBenchmark = SpriteBatchMap();
   Level level;
   AnimatedSprite rogue;
   AnimatedSprite jsonAnimatedSprite;

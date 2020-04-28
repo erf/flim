@@ -8,8 +8,9 @@ import 'game_render_box.dart';
 /// also handles input and state changes
 class GameWidget extends StatelessWidget {
   final Game game;
+  final Size size;
 
-  GameWidget(this.game);
+  GameWidget(this.game, {this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class GameWidget extends StatelessWidget {
             onTap: () {
               game.onTap();
             },
-            child: EmbeddedGameWidget(game),
+            child: EmbeddedGameWidget(game, size: size),
           ),
         );
       },
