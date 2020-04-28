@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
-import 'sprite_base.dart';
+import 'sprite.dart';
 
 /// singleton for loading and caching image assets
 class Assets {
@@ -47,7 +47,7 @@ class Assets {
 
   Map<String, Image> imageCache = {};
 
-  Future preLoadSprites(List<SpriteBase> sprites) async {
+  Future preLoadSprites(List<Sprite> sprites) async {
     List<String> assets = sprites.map((e) => e.imageRect.image).toList();
     return await preLoadImages(assets);
   }

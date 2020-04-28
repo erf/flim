@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'assets.dart';
-import 'sprite_base.dart';
+import 'sprite.dart';
 import 'sprite_batch.dart';
 import 'image_rect.dart';
 
@@ -17,19 +17,12 @@ class SpriteBatchMap {
   }
 
   /// add sprite to sprite batch map with asset name as key
-  void addSprite(SpriteBase sprite) {
+  void add(Sprite sprite) {
     ImageRect imageRect = sprite.imageRect;
     if (!spriteBatchMap.containsKey(imageRect.image)) {
       spriteBatchMap[imageRect.image] = SpriteBatch(Assets.instance.imageCache[imageRect.image]);
     }
     spriteBatchMap[imageRect.image].addSprite(sprite);
-  }
-
-  /// add a list of sprites
-  void addSpriteList(List<SpriteBase> sprites) {
-    sprites.forEach((sprite) {
-      addSprite(sprite);
-    });
   }
 
   /// render sprites effectively

@@ -9,14 +9,14 @@ import 'sprite_batch.dart';
 import 'assets.dart';
 
 class AnimatedSpriteRenderBox extends RenderBox with WidgetsBindingObserver {
-  AnimatedSprite animatedSprite;
+  AnimatedSprite animation;
   SpriteBatch spriteBatch;
   Paint spritePaint = Paint();
   GameLoop gameLoop;
 
-  AnimatedSpriteRenderBox(this.animatedSprite) {
+  AnimatedSpriteRenderBox(this.animation) {
     gameLoop = GameLoop(gameLoopCallback);
-    ui.Image image = Assets.instance.imageCache[this.animatedSprite.imageRect.image];
+    ui.Image image = Assets.instance.imageCache[this.animation.imageRect.image];
     spriteBatch = SpriteBatch(image);
   }
 
@@ -39,9 +39,9 @@ class AnimatedSpriteRenderBox extends RenderBox with WidgetsBindingObserver {
 
   void gameLoopCallback(double dt) {
     if (!attached) return;
-    animatedSprite.update(dt);
+    animation.update(dt);
     spriteBatch.clear();
-    spriteBatch.addSprite(this.animatedSprite);
+    spriteBatch.addSprite(this.animation.sprite);
     markNeedsPaint();
   }
 

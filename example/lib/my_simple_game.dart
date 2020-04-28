@@ -25,7 +25,7 @@ class MySimpleGame extends Game {
       ),
     ).load();
 
-    spriteRenderer.addSprite(rogue);
+    spriteRenderer.add(rogue);
 
     return this;
   }

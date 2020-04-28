@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 
-import 'sprite_base.dart';
+import 'sprite.dart';
 
 /// render a set of sprites inside a single image atlas using Canvas.drawAtlas
 class SpriteBatch {
@@ -48,7 +48,7 @@ class SpriteBatch {
     addTransform(rect: rect, transform: transform, color: color);
   }
 
-  void addSprite(SpriteBase sprite) {
+  void addSprite(Sprite sprite) {
     final transform = RSTransform.fromComponents(
       scale: sprite.transform.scale,
       anchorX: sprite.transform.anchor.dx,

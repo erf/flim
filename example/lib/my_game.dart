@@ -14,8 +14,8 @@ class MyGame extends Game {
   SpriteBatchMap spriteRendererLayer2 = SpriteBatchMap();
   SpriteBatchMap spriteRendererBenchmark = SpriteBatchMap();
   Level level;
-  AnimatedSprite rogue;
-  AnimatedSprite jsonAnimatedSprite;
+  AnimatedSprite rogueAnimation;
+  AnimatedSprite jsonAnimation;
 
   MyGame();
 
@@ -27,10 +27,10 @@ class MyGame extends Game {
 
     // load and cache sprite images
     await Assets.instance.preLoadSprites(level.sprites);
-    await Assets.instance.preLoadSprites(level.animations);
+    await Assets.instance.preLoadSprites(level.animations.map((e) => e.sprite).toList());
 
     // create a uniform sprite sheet
-    rogue = await AnimatedSprite.fromUniformSpriteSheet(
+    rogueAnimation = await AnimatedSprite.fromUniformSpriteSheet(
       'rogue.png',
       subImageSize: IntSize(100, 100),
       numSpriteBounds: IntRect(0, 0, 10, 1),
@@ -52,13 +52,13 @@ class MyGame extends Game {
       transform: Transform2D(translate: Offset(155, 300), scale: 3),
     ).load();
 
-    spriteRendererLayer1.addSprite(angel);
-    spriteRendererLayer2.addSprite(rogue2);
+    spriteRendererLayer1.add(angel);
+    spriteRendererLayer2.add(rogue2);
 
     final jsonSprite = await Sprite.loadJson('sprite.json');
-    spriteRendererLayer1.addSprite(jsonSprite);
+    spriteRendererLayer1.add(jsonSprite);
 
-    jsonAnimatedSprite = await AnimatedSprite.loadJson('animation.json');
+    jsonAnimation = await AnimatedSprite.loadJson('animation.json');
 
     //await createRandomSprites();
 
@@ -67,7 +67,6 @@ class MyGame extends Game {
 
   createRandomSprites() async {
     var random = Random();
-    List<Sprite> randomSprites = [];
     for (int i = 0; i < 10000; i++) {
       int rx = random.nextInt(8);
       int ry = random.nextInt(8);
@@ -77,10 +76,9 @@ class MyGame extends Game {
         imageRect: ImageRect(image: 'boom3.png', rect: IntRect(128 * rx, 128 * ry, 128, 128)),
         transform: Transform2D(translate: Offset(dx, dy), scale: 1),
       );
-      randomSprites.add(boom);
+      spriteRendererBenchmark.add(boom);
     }
     await Assets.instance.preLoadImages(['boom3.png']);
-    spriteRendererBenchmark.addSpriteList(randomSprites);
   }
 
   @override
@@ -90,10 +88,8 @@ class MyGame extends Game {
     level.animations.forEach((animation) {
       animation.update(dt);
     });
-
-    rogue.update(dt);
-
-    jsonAnimatedSprite.update(dt);
+    rogueAnimation.update(dt);
+    jsonAnimation.update(dt);
   }
 
   @override
@@ -103,10 +99,14 @@ class MyGame extends Game {
     spriteRendererBenchmark.render(canvas, size);
 
     spriteRenderer.clear();
-    spriteRenderer.addSpriteList(level.sprites);
-    spriteRenderer.addSpriteList(level.animations);
-    spriteRenderer.addSprite(rogue.asSprite());
-    spriteRenderer.addSprite(jsonAnimatedSprite);
+    level.sprites.forEach((sprite) {
+      spriteRenderer.add(sprite);
+    });
+    level.animations.forEach((animation) {
+      spriteRenderer.add(animation.sprite);
+    });
+    spriteRenderer.add(rogueAnimation.sprite);
+    spriteRenderer.add(jsonAnimation.sprite);
     spriteRenderer.render(canvas, size);
 
     spriteRendererLayer1.render(canvas, size);

@@ -4,12 +4,11 @@ import 'package:flutter/services.dart';
 import 'assets.dart';
 import 'image_rect.dart';
 import 'sprite.dart';
-import 'sprite_base.dart';
 import 'int_rect.dart';
 import 'int_size.dart';
 import 'transform2d.dart';
 
-/// a single frame in a animation
+/// a single frame in an animation
 class Frame {
   ImageRect imageRect;
   double time;
@@ -28,7 +27,7 @@ class Frame {
 /// a list of frames which change over time
 /// a frame has an ImageRect, same as Sprite
 /// so the current frame + transform is essentially the same as a sprite
-class AnimatedSprite implements SpriteBase {
+class AnimatedSprite {
   String image;
   Transform2D transform;
   List<Frame> frames;
@@ -43,9 +42,22 @@ class AnimatedSprite implements SpriteBase {
     this.time = 0.0,
   });
 
-  @override
+  /// getter for current frame
+  Frame get currentFrame => frames[index];
+
+  /// image rect for current frame
+  ImageRect get imageRect => currentFrame.imageRect;
+
+  /// return the current frame + transform as a sprite
+  Sprite get sprite {
+    return Sprite(
+      transform: transform,
+      imageRect: imageRect,
+    );
+  }
+
   Future<AnimatedSprite> load() async {
-    await Assets.instance.preLoadSprites([this]);
+    await Assets.instance.preLoadSprites([sprite]);
     return this;
   }
 
@@ -98,19 +110,6 @@ class AnimatedSprite implements SpriteBase {
       transform: transform,
     );
   }
-
-  Sprite asSprite() {
-    return Sprite(
-      transform: transform,
-      imageRect: imageRect,
-    );
-  }
-
-  /// getter for current frame
-  Frame get currentFrame => frames[index];
-
-  /// image rect for current frame
-  ImageRect get imageRect => currentFrame.imageRect;
 
   double get sumTime => frames.fold(0.0, (prev, frame) => prev + frame.time);
 

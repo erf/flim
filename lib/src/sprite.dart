@@ -2,12 +2,11 @@ import 'package:flutter/services.dart';
 
 import 'image_rect.dart';
 import 'int_rect.dart';
-import 'sprite_base.dart';
 import 'transform2d.dart';
 import 'assets.dart';
 
 /// an image rect with transformations
-class Sprite implements SpriteBase {
+class Sprite {
   ImageRect imageRect;
   Transform2D transform;
 
