@@ -5,11 +5,11 @@ minimal data-driven 2d sprite game lib for Flutter
 ## Features
 
 - fast buffered sprite rendering using Canvas.drawAtlas
-- data-driven; store sprites and animations as json
-- animated sprites ( with same sprite base type )
+- animated sprites
+- data-driven; load sprites and animations as json
 - abstractions for game, render-loop, game widget
-- widgets for sprite and animated sprite
-- loosely coupled pick-and-choose flutter package
+- widgets for sprites and animated sprites
+- minimal loosely coupled flutter package
 
 ## Usage
 

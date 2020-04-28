@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
@@ -84,6 +86,7 @@ class AnimatedSprite {
     @required IntSize subImageSize, // the size of the sub-images inside the sprite sheet
     @required IntRect numSpriteBounds, // the bounds of the num of sprites inside the sheet
     @required double frameTime,
+    Color color = const Color(0x00000000),
     Transform2D transform,
   }) {
     List<Frame> frames = [];
@@ -93,6 +96,7 @@ class AnimatedSprite {
           Frame(
             imageRect: ImageRect(
               image: image,
+              color: color,
               rect: IntRect(
                 col * subImageSize.width,
                 row * subImageSize.height,

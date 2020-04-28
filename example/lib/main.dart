@@ -17,12 +17,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'flim demo',
       theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          appBarTheme: AppBarTheme(
-            elevation: 0,
-            color: Colors.black26,
-          )),
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        appBarTheme: AppBarTheme(
+          elevation: 0,
+          color: Colors.black26,
+        ),
+      ),
       home: MyHomePage(),
     );
   }
@@ -45,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget buildSimpleGameAndWidgets() {
-    return Stack(
+    return Row(
       children: [
         FutureBuilder(
           future: Sprite(
@@ -55,29 +56,34 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.yellowAccent,
             ),
             transform: Transform2D(
-              translate: Offset(64.0, 64.0),
-              scale: 1.0,
+              anchor: Offset(64.0, 64.0),
             ),
           ).load(),
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return SpriteWidget(snapshot.data);
-            } else {
-              return Container();
-            }
+            return Container(
+              width: 300,
+              height: 200,
+              color: Colors.blueAccent,
+              child: Center(
+                child: snapshot.hasData ? SpriteWidget(snapshot.data) : Container(),
+              ),
+            );
           },
         ),
         FutureBuilder(
           future: MySimpleGame().initialize(),
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return GameWidget(
-                snapshot.data,
-                size: Size(100, 100),
-              );
-            } else {
-              return Container();
-            }
+            return Container(
+              width: 200,
+              height: 200,
+              color: Colors.redAccent,
+              child: snapshot.hasData
+                  ? GameWidget(
+                      snapshot.data,
+                      size: Size(200, 200),
+                    )
+                  : Container(),
+            );
           },
         ),
       ],
@@ -120,6 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
             subImageSize: IntSize(128, 128),
             numSpriteBounds: IntRect(0, 0, 8, 8),
             frameTime: 0.03,
+            color: Colors.transparent,
             transform: Transform2D(
               translate: Offset(0.0, 128 * 2.0),
             ),

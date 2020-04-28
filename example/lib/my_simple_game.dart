@@ -19,8 +19,8 @@ class MySimpleGame extends Game {
         rect: IntRect(0, 0, 100, 100),
       ),
       transform: Transform2D(
-        translate: Offset(64, 64),
-        scale: 1,
+        translate: Offset(100, 100),
+        scale: 3,
         anchor: Offset(50, 50)
       ),
     ).load();

@@ -13,9 +13,8 @@ class SpriteRenderer {
 
   void render(Canvas canvas, Size size) {
     ui.Image image = Assets.instance.imageCache[sprite.imageRect.image];
-    if (sprite.imageRect.color != null) {
+    if (sprite.imageRect.color != null)
       paint.colorFilter = ColorFilter.mode(sprite.imageRect.color, BlendMode.dstOver);
-    }
     Rect src = sprite.imageRect.rect.asRect;
     Rect dst = Rect.fromLTWH(0, 0, src.width, src.height);
     canvas.save();
