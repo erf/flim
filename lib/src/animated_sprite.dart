@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'assets.dart';
 import 'image_rect.dart';
+import 'sprite.dart';
 import 'sprite_base.dart';
 import 'int_rect.dart';
 import 'int_size.dart';
@@ -95,6 +96,13 @@ class AnimatedSprite implements SpriteBase {
     return AnimatedSprite(
       frames: frames,
       transform: transform,
+    );
+  }
+
+  Sprite asSprite() {
+    return Sprite(
+      transform: transform,
+      imageRect: imageRect,
     );
   }
 

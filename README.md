@@ -14,7 +14,7 @@ minimal data-driven 2d sprite game lib for Flutter
 ## Usage
 
 Inherit from `Game` and override methods to update, render and respond to user 
-input and various lifecycle events.
+input and lifecycle events.
 
 Use a `GameWidget`, `SpriteWidget` and `AnimatedSpriteWidget` to add content to 
 your Flutter app.

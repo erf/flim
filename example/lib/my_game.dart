@@ -105,7 +105,7 @@ class MyGame extends Game {
     spriteRenderer.clear();
     spriteRenderer.addSpriteList(level.sprites);
     spriteRenderer.addSpriteList(level.animations);
-    spriteRenderer.addSprite(rogue);
+    spriteRenderer.addSprite(rogue.asSprite());
     spriteRenderer.addSprite(jsonAnimatedSprite);
     spriteRenderer.render(canvas, size);
 
