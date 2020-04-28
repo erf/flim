@@ -1,0 +1,22 @@
+name: flim
+description: minimal data-driven sprite lib for Flutter
+version: 0.0.1
+author: Erlend Fagerheim
+homepage: https://github.com/erf/flim
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:

@@ -1,0 +1,52 @@
+{
+  "sprites": [
+    {
+      "transform": {
+        "translate": [0, 0],
+        "scale": 1.0,
+        "rotation": 0.0
+      },
+      "imageRect": {
+        "image": "boom3.png",
+        "rect": [ 0, 128, 128, 128 ]
+      }
+    },
+    {
+      "transform": {
+        "translate": [128, 0],
+        "scale": 1.0,
+        "rotation": 0.0
+      },
+      "imageRect": {
+        "image": "boom3.png",
+        "rect": [ 256, 384, 128, 128 ]
+      }
+    }
+  ],
+  "animations": [
+    {
+      "image": "boom3.png",
+      "transform": {
+        "translate": [256, 0],
+        "scale": 1.0,
+        "rotation": 0.0
+      },
+      "index": 0,
+      "time": 0.0,
+      "frames": [
+        {
+          "imageRect": {
+            "rect": [ 384, 512, 128, 128 ]
+          },
+          "time": 1.0
+        },
+        {
+          "imageRect": {
+            "rect": [ 640, 640, 128, 128 ]
+          },
+          "time": 1.0
+        }
+      ]
+    }
+  ]
+}
