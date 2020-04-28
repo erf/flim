@@ -13,22 +13,23 @@ minimal data-driven 2d sprite game lib for Flutter
 
 ## Usage
 
-Inherit from `Game` and override methods to update, render and respond to user 
-input and lifecycle events.
+Create a subclass of `Game` and override methods to update, render and respond 
+to user input and lifecycle events.
 
-Use a `GameWidget`, `SpriteWidget` and `AnimatedSpriteWidget` to add content to 
-your Flutter app.
+Wrap your game in a `GameWidget` or add a single sprite or sprite animation 
+using `SpriteWidget` and `AnimatedSpriteWidget`.
 
-Add `Sprite` and `SpriteAnimation`'s from code or json.
+Add `Sprite`'s and `AnimatedSprite`'s from either code or json.
 
 Pre-load and cache images by calling either: `Sprite.load`, 
-`Assets.preLoadSprite` or `Assets.preLoadImages`. You usually do this in 
-`Game.initialize`.
+`Assets.preLoadSprite` or `Assets.preLoadImages` in `Game.initialize`.
 
-Render sprites by adding them to a `SpriteRenderer` or `SpriteBatch` and call 
-it's `render` method in `Game.render`. Update animations in `Game.update`.
+Render sprites by adding them to a `SpriteRenderer`, `SpriteBatch` or 
+`SpriteBatchMap`. Call it's `render` method in `Game.render`. 
 
-A render loop takes care of updating your game objects at 60 fps.
+Update `AnimatedSprite`'s in `Game.update` before adding them to a renderer. 
+
+A render loop takes care of updating your game objects at ~60 fps.
 
 ## Notes
 
