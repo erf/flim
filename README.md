@@ -7,7 +7,7 @@ minimal data-driven sprite game lib for Flutter
 - sprite and animated sprites with transforms 
 - buffered sprite rendering using Canvas.drawAtlas (fast!)
 - data-driven; load sprites and animations as json
-- abstractions for game, render-loop, game widget and more
+- abstractions for game, render-loop, input, widgets and more
 - minimal and loosely coupled Flutter package
 
 ## Usage
