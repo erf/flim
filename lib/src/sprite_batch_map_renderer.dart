@@ -17,11 +17,9 @@ class SpriteBatchMapRenderer {
 
   /// add sprite to sprite batch map with asset name as key
   void add(Sprite sprite) {
-    ImageRect imageRect = sprite.imageRect;
-    if (!spriteBatchMap.containsKey(imageRect.image)) {
-      spriteBatchMap[imageRect.image] = SpriteBatchRenderer(sprite.image);
-    }
-    spriteBatchMap[imageRect.image].add(sprite);
+    final String image = sprite.imageRect.image;
+    spriteBatchMap.putIfAbsent(image, () => SpriteBatchRenderer(sprite.image));
+    spriteBatchMap[image].add(sprite);
   }
 
   /// render sprites effectively
