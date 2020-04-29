@@ -11,10 +11,7 @@ import 'int_rect.dart';
 import 'int_size.dart';
 import 'transform2d.dart';
 
-/// an animated sprite
-/// a list of frames which change over time
-/// a frame has an ImageRect, same as Sprite
-/// so the current frame + transform is essentially the same as a sprite
+/// An animated sprite - a list of [Frame]'s which changes over time
 class AnimatedSprite {
   String image;
   Transform2D transform;
@@ -25,7 +22,7 @@ class AnimatedSprite {
   AnimatedSprite({
     this.image,
     this.transform,
-    this.frames,
+    this.frames = const [],
     this.index = 0,
     this.time = 0.0,
   });
@@ -35,14 +32,16 @@ class AnimatedSprite {
 
   /// return the current frame + transform as a sprite
   Sprite get sprite {
-    var t = Transform2D();
-    t.translate = transform.translate + currentFrame.sprite.transform.translate;
-    t.rotation = transform.rotation + currentFrame.sprite.transform.rotation;
-    t.scale = transform.scale * currentFrame.sprite.transform.scale;
-    t.anchor = transform.anchor + currentFrame.sprite.transform.anchor;
+    final currentSprite = currentFrame.sprite;
+    final currentTransform = currentSprite.transform;
     return Sprite(
-      transform: t,
-      imageRect: currentFrame.sprite.imageRect,
+      imageRect: currentSprite.imageRect,
+      transform: Transform2D(
+        translate: transform.translate + currentTransform.translate,
+        rotation: transform.rotation + currentTransform.rotation,
+        scale: transform.scale * currentTransform.scale,
+        anchor: transform.anchor + currentTransform.anchor,
+      ),
     );
   }
 

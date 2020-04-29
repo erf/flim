@@ -1,6 +1,6 @@
 import 'sprite.dart';
 
-/// a single frame in an animation
+/// A single frame in an [AnimatedSprite]
 class Frame {
   Sprite sprite;
   double time;
