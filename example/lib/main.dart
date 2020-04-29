@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('flim demo'),
       ),
-      body: buildAnimationWithTwoImage(),
+      body: buildGameAndWidgets(),
     );
   }
 
@@ -136,8 +136,8 @@ class _MyHomePageState extends State<MyHomePage> {
         FutureBuilder(
           future: AnimatedSprite.fromUniformSpriteSheet(
             'boom3.png',
-            subImageSize: IntSize(128, 128),
-            numSpriteBounds: IntRect(0, 0, 8, 8),
+            spriteSize: IntSize(128, 128),
+            atlasBounds: IntRect(0, 0, 8, 8),
             frameTime: 0.03,
             color: Colors.transparent,
             transform: Transform2D(

@@ -36,12 +36,10 @@ class AnimatedSprite {
   /// return the current frame + transform as a sprite
   Sprite get sprite {
     var t = Transform2D();
-    if (currentFrame.sprite.transform != null) {
-      t.translate = transform.translate + currentFrame.sprite.transform.translate;
-      t.rotation = transform.rotation + currentFrame.sprite.transform.rotation;
-      t.scale = transform.scale + currentFrame.sprite.transform.scale;
-      t.anchor = transform.anchor + currentFrame.sprite.transform.anchor;
-    }
+    t.translate = transform.translate + currentFrame.sprite.transform.translate;
+    t.rotation = transform.rotation + currentFrame.sprite.transform.rotation;
+    t.scale = transform.scale * currentFrame.sprite.transform.scale;
+    t.anchor = transform.anchor + currentFrame.sprite.transform.anchor;
     return Sprite(
       transform: t,
       imageRect: currentFrame.sprite.imageRect,
@@ -73,26 +71,27 @@ class AnimatedSprite {
 
   factory AnimatedSprite.fromUniformSpriteSheet(
     String image, {
-    @required IntSize subImageSize, // the size of the sub-images inside the sprite sheet
-    @required IntRect numSpriteBounds, // the bounds of the num of sprites inside the sheet
+    @required IntSize spriteSize, // the size of the sub-images inside the sprite sheet
+    @required IntRect atlasBounds, // the bounds of the num of sprites inside the sheet
     @required double frameTime,
     Color color = const Color(0x00000000),
     Transform2D transform,
   }) {
     List<Frame> frames = [];
-    for (int row = numSpriteBounds.top; row < numSpriteBounds.height; row++) {
-      for (int col = numSpriteBounds.left; col < numSpriteBounds.width; col++) {
+    for (int row = atlasBounds.top; row < atlasBounds.height; row++) {
+      for (int col = atlasBounds.left; col < atlasBounds.width; col++) {
         frames.add(
           Frame(
             sprite: Sprite(
+              transform: Transform2D(),
               imageRect: ImageRect(
                 image: image,
                 color: color,
                 rect: IntRect(
-                  col * subImageSize.width,
-                  row * subImageSize.height,
-                  subImageSize.width,
-                  subImageSize.height,
+                  col * spriteSize.width,
+                  row * spriteSize.height,
+                  spriteSize.width,
+                  spriteSize.height,
                 ),
               ),
             ),

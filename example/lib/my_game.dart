@@ -32,8 +32,8 @@ class MyGame extends Game {
     // create a uniform sprite sheet
     rogueAnimation = await AnimatedSprite.fromUniformSpriteSheet(
       'rogue.png',
-      subImageSize: IntSize(100, 100),
-      numSpriteBounds: IntRect(0, 0, 10, 1),
+      spriteSize: IntSize(100, 100),
+      atlasBounds: IntRect(0, 0, 10, 1),
       frameTime: 0.08,
       transform: Transform2D(
         translate: Offset(128 * 1.0, 450),

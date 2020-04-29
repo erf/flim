@@ -2,7 +2,7 @@
   "sprites": [
     {
       "transform": {
-        "translate": [0, 0],
+        "translate": [ 0, 0 ],
         "scale": 1.0,
         "rotation": 0.0
       },
@@ -13,7 +13,7 @@
     },
     {
       "transform": {
-        "translate": [128, 0],
+        "translate": [ 128, 0 ],
         "scale": 1.0,
         "rotation": 0.0
       },
@@ -27,7 +27,7 @@
     {
       "image": "boom3.png",
       "transform": {
-        "translate": [256, 0],
+        "translate": [ 256, 0 ],
         "scale": 1.0,
         "rotation": 0.0
       },
@@ -35,14 +35,18 @@
       "time": 0.0,
       "frames": [
         {
-          "imageRect": {
-            "rect": [ 384, 512, 128, 128 ]
+          "sprite": {
+            "imageRect": {
+              "rect": [ 384, 512, 128, 128 ]
+            }
           },
           "time": 1.0
         },
         {
-          "imageRect": {
-            "rect": [ 640, 640, 128, 128 ]
+          "sprite": {
+            "imageRect": {
+              "rect": [ 640, 640, 128, 128 ]
+            }
           },
           "time": 1.0
         }

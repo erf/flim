@@ -1,19 +1,11 @@
 {
   "imageRect": {
     "image": "boom3.png",
-    "rect": [
-      512,
-      512,
-      128,
-      128
-    ]
+    "rect": [ 512, 512, 128, 128 ]
   },
   "transform": {
-    "translate": [
-      200,
-      200
-    ],
-    "scale": 3.0,
+    "translate": [ 200, 200 ],
+    "scale": 2.0,
     "anchor": [64, 64]
   }
 }
