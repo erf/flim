@@ -59,14 +59,14 @@ class AnimatedSprite {
   }
 
   Future<AnimatedSprite> load() async {
-    await Assets.instance.preLoadSprites([sprite]);
+    await Assets.instance.preLoadImages(frames.map((e) => e.imageRect.image).toList());
     return this;
   }
 
   static Future<AnimatedSprite> loadJson(String name) async {
-    final jsonSprite = await Assets.instance.loadJsonAsset(rootBundle, name);
-    final spriteFromJson = await AnimatedSprite.fromJson(jsonSprite).load();
-    return spriteFromJson;
+    final jsonAsset = await Assets.instance.loadJsonAsset(rootBundle, name);
+    final animatedSprite = await AnimatedSprite.fromJson(jsonAsset).load();
+    return animatedSprite;
   }
 
   factory AnimatedSprite.fromJson(Map<String, dynamic> json) {

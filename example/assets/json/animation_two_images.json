@@ -1,0 +1,21 @@
+  {
+    "image": "boom3.png",
+    "transform": {
+      "translate": [384, 0],
+      "scale": 1.5
+    },
+    "frames": [
+      {
+        "imageRect": {
+          "rect": [ 384, 512, 128, 128 ]
+        },
+        "time": 1.0
+      },
+      {
+        "imageRect": {
+          "rect": [ 640, 640, 128, 128 ]
+        },
+        "time": 1.0
+      }
+    ]
+  }
