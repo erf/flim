@@ -13,7 +13,7 @@ class GameRenderBox extends RenderBox with WidgetsBindingObserver {
   GameLoop gameLoop;
 
   GameRenderBox(this.game) {
-    gameLoop = GameLoop(gameLoopCallback);
+    gameLoop = GameLoop(update);
   }
 
   @override
@@ -39,7 +39,7 @@ class GameRenderBox extends RenderBox with WidgetsBindingObserver {
     super.detach();
   }
 
-  void gameLoopCallback(double dt) {
+  void update(double dt) {
     if (!attached) return;
     //game.recordDt(dt);
     game.update(dt);

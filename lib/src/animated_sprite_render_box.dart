@@ -1,23 +1,17 @@
-import 'dart:ui' as ui;
-
+import 'package:flim/flim.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 import 'animated_sprite.dart';
 import 'game_loop.dart';
-import 'sprite_batch.dart';
-import 'assets.dart';
 
 class AnimatedSpriteRenderBox extends RenderBox with WidgetsBindingObserver {
-  AnimatedSprite animation;
-  SpriteBatch spriteBatch;
-  Paint spritePaint = Paint();
+  AnimatedSprite animatedSprite;
+  SpriteBatchMap spriteBatchMap = SpriteBatchMap();
   GameLoop gameLoop;
 
-  AnimatedSpriteRenderBox(this.animation) {
-    gameLoop = GameLoop(gameLoopCallback);
-    ui.Image image = Assets.instance.imageCache[this.animation.imageRect.image];
-    spriteBatch = SpriteBatch(image);
+  AnimatedSpriteRenderBox(this.animatedSprite) {
+    gameLoop = GameLoop(update);
   }
 
   @override
@@ -37,11 +31,11 @@ class AnimatedSpriteRenderBox extends RenderBox with WidgetsBindingObserver {
     super.detach();
   }
 
-  void gameLoopCallback(double dt) {
+  void update(double dt) {
     if (!attached) return;
-    animation.update(dt);
-    spriteBatch.clear();
-    spriteBatch.addSprite(this.animation.sprite);
+    animatedSprite.update(dt);
+    spriteBatchMap.clear();
+    spriteBatchMap.add(animatedSprite.sprite);
     markNeedsPaint();
   }
 
@@ -49,21 +43,10 @@ class AnimatedSpriteRenderBox extends RenderBox with WidgetsBindingObserver {
   void paint(PaintingContext context, Offset offset) {
     context.canvas.save();
     context.canvas.translate(offset.dx, offset.dy);
-    spriteBatch.render(context.canvas, size);
+    spriteBatchMap.render(context.canvas, size);
     context.canvas.restore();
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.resumed:
-        gameLoop.muted = false;
-        break;
-      case AppLifecycleState.inactive:
-      case AppLifecycleState.paused:
-      case AppLifecycleState.detached:
-        gameLoop.muted = true;
-        break;
-    }
-  }
+  void didChangeAppLifecycleState(AppLifecycleState state) {}
 }

@@ -1,19 +1,20 @@
   {
-    "image": "boom3.png",
     "transform": {
-      "translate": [384, 0],
-      "scale": 1.5
+      "translate": [0, 0],
+      "scale": 1.0
     },
     "frames": [
       {
         "imageRect": {
-          "rect": [ 384, 512, 128, 128 ]
+          "image": "boom3.png",
+          "rect": [ 512, 512, 128, 128 ]
         },
         "time": 1.0
       },
       {
         "imageRect": {
-          "rect": [ 640, 640, 128, 128 ]
+          "image": "rogue.png",
+          "rect": [ 0, 0, 128, 128 ]
         },
         "time": 1.0
       }

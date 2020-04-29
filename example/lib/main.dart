@@ -41,7 +41,20 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('flim demo'),
       ),
-      body: buildGameAndWidgets(),
+      body: buildAnimationWithTwoImage(),
+    );
+  }
+
+  Widget buildAnimationWithTwoImage() {
+    return FutureBuilder(
+      future: AnimatedSprite.loadJson('animation_two_images.json'),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return AnimatedSpriteWidget(snapshot.data);
+        } else {
+          return Container();
+        }
+      },
     );
   }
 
