@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flim/flim.dart';
 
 class MySimpleGame extends Game {
-  SpriteBatchMap spriteRenderer = SpriteBatchMap();
+  SpriteBatchMapRenderer spriteRenderer = SpriteBatchMapRenderer();
 
   MySimpleGame();
 

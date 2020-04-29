@@ -1,11 +1,9 @@
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
-
 import 'sprite.dart';
 
 /// render a set of sprites inside a single image atlas using Canvas.drawAtlas
-class SpriteBatch {
+class SpriteBatchRenderer {
   Image atlas;
   List<Rect> rects = [];
   List<RSTransform> transforms = [];
@@ -17,38 +15,9 @@ class SpriteBatch {
   static final defaultTransform = RSTransform(1, 0, 0, 0);
   static const defaultColor = const Color(0x00000000); // transparent
 
-  SpriteBatch(this.atlas);
+  SpriteBatchRenderer(this.atlas);
 
-  void addTransform({
-    @required Rect rect,
-    RSTransform transform,
-    Color color,
-  }) {
-    rects.add(rect);
-    transforms.add(transform ?? defaultTransform);
-    colors.add(color ?? defaultColor);
-  }
-
-  void add({
-    @required Rect rect,
-    double scale = 1.0,
-    Offset anchor = Offset.zero,
-    double rotation = 0,
-    Offset translate = Offset.zero,
-    Color color,
-  }) {
-    final transform = RSTransform.fromComponents(
-      scale: scale,
-      anchorX: anchor.dx,
-      anchorY: anchor.dy,
-      rotation: rotation,
-      translateX: translate.dx,
-      translateY: translate.dy,
-    );
-    addTransform(rect: rect, transform: transform, color: color);
-  }
-
-  void addSprite(Sprite sprite) {
+  void add(Sprite sprite) {
     final transform = RSTransform.fromComponents(
       scale: sprite.transform.scale,
       anchorX: sprite.transform.anchor.dx,
@@ -57,11 +26,9 @@ class SpriteBatch {
       translateX: sprite.transform.translate.dx,
       translateY: sprite.transform.translate.dy,
     );
-    addTransform(
-      rect: sprite.imageRect.rect.asRect,
-      transform: transform,
-      color: sprite.imageRect.color,
-    );
+    rects.add(sprite.imageRect.rect.asRect);
+    transforms.add(transform ?? defaultTransform);
+    colors.add(sprite.imageRect.color ?? defaultColor);
   }
 
   void clear() {

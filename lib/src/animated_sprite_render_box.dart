@@ -7,7 +7,7 @@ import 'game_loop.dart';
 
 class AnimatedSpriteRenderBox extends RenderBox with WidgetsBindingObserver {
   AnimatedSprite animatedSprite;
-  SpriteBatchMap spriteBatchMap = SpriteBatchMap();
+  SpriteBatchMapRenderer spriteBatchMap = SpriteBatchMapRenderer();
   GameLoop gameLoop;
 
   AnimatedSpriteRenderBox(this.animatedSprite) {

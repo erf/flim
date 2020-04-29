@@ -9,10 +9,10 @@ import 'package:flim/flim.dart';
 import 'level.dart';
 
 class MyGame extends Game {
-  SpriteBatchMap spriteRenderer = SpriteBatchMap();
-  SpriteBatchMap spriteRendererLayer1 = SpriteBatchMap();
-  SpriteBatchMap spriteRendererLayer2 = SpriteBatchMap();
-  SpriteBatchMap spriteRendererBenchmark = SpriteBatchMap();
+  SpriteBatchMapRenderer spriteRenderer = SpriteBatchMapRenderer();
+  SpriteBatchMapRenderer spriteRendererLayer1 = SpriteBatchMapRenderer();
+  SpriteBatchMapRenderer spriteRendererLayer2 = SpriteBatchMapRenderer();
+  SpriteBatchMapRenderer spriteRendererBenchmark = SpriteBatchMapRenderer();
   Level level;
   AnimatedSprite rogueAnimation;
   AnimatedSprite jsonAnimation;

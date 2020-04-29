@@ -19,18 +19,19 @@ to user input and lifecycle events.
 Wrap your game in a `GameWidget` or add a single sprite or sprite animation 
 using `SpriteWidget` and `AnimatedSpriteWidget`.
 
-Add `Sprite`'s and `AnimatedSprite`'s from either code or json.
+Add `Sprite` and `AnimatedSprite` from either code or json assets.
 
 Pre-load and cache images by calling either: `Sprite.load`, 
 `Assets.preLoadSprite` or `Assets.preLoadImages` in `Game.initialize`.
 
-Render sprites by adding them to a `SpriteRenderer`, `SpriteBatch` or 
-`SpriteBatchMap`. Call it's `render` method in `Game.render`. 
+Render sprites by adding them to a `SpriteRenderer`, `SpriteBatchRenderer` or
+`SpriteBatchMapRenderer`. Call it's `render` method in `Game.render`.
 
-Update `AnimatedSprite`'s in `Game.update` before adding them to a renderer. 
+Update `AnimatedSprite` in `Game.update` before adding to a renderer (remember 
+to clear renderers before adding sprites).
 
 A render loop takes care of updating your game objects at ~60 fps.
 
 ## Notes
 
-- use `flutter format -l 100 .` to format code
+- format code using `flutter format -l 100 .`

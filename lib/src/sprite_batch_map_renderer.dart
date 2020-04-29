@@ -2,12 +2,12 @@ import 'dart:ui';
 
 import 'assets.dart';
 import 'sprite.dart';
-import 'sprite_batch.dart';
+import 'sprite_batch_renderer.dart';
 import 'image_rect.dart';
 
 /// a sprite batch per image map
-class SpriteBatchMap {
-  Map<String, SpriteBatch> spriteBatchMap = {};
+class SpriteBatchMapRenderer {
+  Map<String, SpriteBatchRenderer> spriteBatchMap = {};
 
   /// remove all items from all sprite batch maps
   void clear() {
@@ -20,9 +20,9 @@ class SpriteBatchMap {
   void add(Sprite sprite) {
     ImageRect imageRect = sprite.imageRect;
     if (!spriteBatchMap.containsKey(imageRect.image)) {
-      spriteBatchMap[imageRect.image] = SpriteBatch(Assets.instance.imageCache[imageRect.image]);
+      spriteBatchMap[imageRect.image] = SpriteBatchRenderer(Assets.instance.imageCache[imageRect.image]);
     }
-    spriteBatchMap[imageRect.image].addSprite(sprite);
+    spriteBatchMap[imageRect.image].add(sprite);
   }
 
   /// render sprites effectively
