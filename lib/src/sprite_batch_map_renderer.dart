@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'sprite.dart';
 import 'sprite_batch_renderer.dart';
-import 'image_rect.dart';
 
 /// a sprite batch per image map
 class SpriteBatchMapRenderer {

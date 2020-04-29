@@ -4,6 +4,7 @@ import 'package:flim/flim.dart';
 
 import 'my_game.dart';
 import 'my_simple_game.dart';
+import 'my_keyboard_game.dart';
 
 void main() async {
   Assets.instance.imageBasePath = "assets/images/";
@@ -41,7 +42,20 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('flim demo'),
       ),
-      body: buildGameAndWidgets(),
+      body: buildMyTestGame(),
+    );
+  }
+
+  Widget buildMyTestGame() {
+    return FutureBuilder(
+      future: MyKeyboardGame().initialize(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return GameWidget(snapshot.data);
+        } else {
+          return Container();
+        }
+      },
     );
   }
 
