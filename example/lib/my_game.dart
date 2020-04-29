@@ -22,12 +22,11 @@ class MyGame extends Game {
   @override
   Future<Game> initialize() async {
     // load level with sprites and animations from json file
-    final json = await Assets.instance.loadJsonAsset(rootBundle, 'level.json');
-    level = Level.fromJson(json);
+    level = Level.fromJson(await Assets.instance.loadJson(rootBundle, 'level.json'));
 
     // load and cache sprite images
-    await Assets.instance.preLoadSprites(level.sprites);
-    await Assets.instance.preLoadSprites(level.animations.map((e) => e.sprite).toList());
+    await Future.wait(level.sprites.map((sprite) => sprite.load()));
+    await Future.wait(level.animations.map((sprite) => sprite.load()));
 
     // create a uniform sprite sheet
     rogueAnimation = await AnimatedSprite.fromUniformSpriteSheet(
@@ -72,13 +71,12 @@ class MyGame extends Game {
       int ry = random.nextInt(8);
       double dx = random.nextInt(500).toDouble(); // TODO use screen width
       double dy = random.nextInt(500).toDouble(); // TODO use screen height
-      final boom = Sprite(
+      final boom = await Sprite(
         imageRect: ImageRect(image: 'boom3.png', rect: IntRect(128 * rx, 128 * ry, 128, 128)),
         transform: Transform2D(translate: Offset(dx, dy), scale: 1),
-      );
+      ).load();
       spriteRendererBenchmark.add(boom);
     }
-    await Assets.instance.preLoadImages(['boom3.png']);
   }
 
   @override

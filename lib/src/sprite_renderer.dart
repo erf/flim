@@ -1,7 +1,5 @@
-import 'dart:ui' as ui;
 import 'dart:ui';
 
-import 'assets.dart';
 import 'sprite.dart';
 
 /// render a single sprite
@@ -12,7 +10,6 @@ class SpriteRenderer {
   SpriteRenderer(this.sprite);
 
   void render(Canvas canvas, Size size) {
-    ui.Image image = Assets.instance.imageCache[sprite.imageRect.image];
     if (sprite.imageRect.color != null)
       paint.colorFilter = ColorFilter.mode(sprite.imageRect.color, BlendMode.dstOver);
     Rect src = sprite.imageRect.rect.asRect;
@@ -22,7 +19,7 @@ class SpriteRenderer {
     canvas.rotate(sprite.transform.rotation);
     canvas.scale(sprite.transform.scale);
     canvas.translate(-sprite.transform.anchor.dx, -sprite.transform.anchor.dy);
-    canvas.drawImageRect(image, src, dst, paint);
+    canvas.drawImageRect(sprite.image, src, dst, paint);
     canvas.restore();
   }
 }

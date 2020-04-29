@@ -20,7 +20,7 @@ class SpriteBatchMapRenderer {
   void add(Sprite sprite) {
     ImageRect imageRect = sprite.imageRect;
     if (!spriteBatchMap.containsKey(imageRect.image)) {
-      spriteBatchMap[imageRect.image] = SpriteBatchRenderer(Assets.instance.imageCache[imageRect.image]);
+      spriteBatchMap[imageRect.image] = SpriteBatchRenderer(sprite.image);
     }
     spriteBatchMap[imageRect.image].add(sprite);
   }

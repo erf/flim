@@ -6,8 +6,8 @@ import 'my_game.dart';
 import 'my_simple_game.dart';
 
 void main() async {
-  Assets.instance.imagePath = "assets/images/";
-  Assets.instance.jsonPath = "assets/json/";
+  Assets.instance.imageBasePath = "assets/images/";
+  Assets.instance.jsonBasePath = "assets/json/";
   runApp(MyApp());
 }
 

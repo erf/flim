@@ -13,7 +13,7 @@ import 'transform2d.dart';
 
 /// An animated sprite - a list of [Frame]'s which changes over time
 class AnimatedSprite {
-  final String image;
+  final String image; // set if frames use same image
   Transform2D transform;
   final List<Frame> frames;
   int index;
@@ -36,6 +36,7 @@ class AnimatedSprite {
     final currentSprite = currentFrame.sprite;
     final currentTransform = currentSprite.transform;
     return Sprite(
+      image: currentSprite.image,
       imageRect: currentSprite.imageRect,
       transform: Transform2D(
         translate: transform.translate + currentTransform.translate,
@@ -47,12 +48,12 @@ class AnimatedSprite {
   }
 
   Future<AnimatedSprite> load() async {
-    await Assets.instance.preLoadSprites(frames.map((e) => e.sprite).toList());
+    await Future.wait(frames.map((e) => e.sprite.load()));
     return this;
   }
 
   static Future<AnimatedSprite> loadJson(String name) async {
-    final jsonAsset = await Assets.instance.loadJsonAsset(rootBundle, name);
+    final jsonAsset = await Assets.instance.loadJson(rootBundle, name);
     final animatedSprite = await AnimatedSprite.fromJson(jsonAsset).load();
     return animatedSprite;
   }

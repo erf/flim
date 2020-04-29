@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter/services.dart';
 
 import 'package:flim/flim.dart';
 
@@ -28,11 +25,6 @@ class MySimpleGame extends Game {
     spriteRenderer.add(rogue);
 
     return this;
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
   }
 
   @override

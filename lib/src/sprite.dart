@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/services.dart';
 
 import 'image_rect.dart';
@@ -7,22 +9,22 @@ import 'assets.dart';
 
 /// an image rect with transformations
 class Sprite {
+  ui.Image image;
   ImageRect imageRect;
   Transform2D transform;
 
-  Sprite({this.imageRect, this.transform});
+  Sprite({this.image, this.imageRect, this.transform});
 
   Future<Sprite> load() async {
-    await Assets.instance.preLoadSprites([this]);
+    image = await Assets.instance.loadImage(imageRect.image);
     if (imageRect.rect == null) {
-      final image = Assets.instance.imageCache[imageRect.image];
       imageRect.rect = IntRect(0, 0, image.width, image.height);
     }
     return this;
   }
 
   static Future<Sprite> loadJson(String name) async {
-    final jsonSprite = await Assets.instance.loadJsonAsset(rootBundle, name);
+    final jsonSprite = await Assets.instance.loadJson(rootBundle, name);
     final spriteFromJson = await Sprite.fromJson(jsonSprite).load();
     return spriteFromJson;
   }
