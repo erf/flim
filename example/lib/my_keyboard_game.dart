@@ -6,24 +6,49 @@ import 'package:flutter/services.dart';
 
 class MyKeyboardGame extends Game {
   SpriteBatchMapRenderer spriteRenderer = SpriteBatchMapRenderer();
-  Sprite rogue;
+  Sprite playerSprite;
+  AnimatedSprite playerFireAnimation;
+  AnimatedSprite boomAnimation;
   Offset vel = Offset(0, 0);
   Map<String, bool> keysPressed = {};
+  bool fire = false;
 
   MyKeyboardGame();
 
   @override
   Future<Game> initialize() async {
-    rogue = await Sprite(
+    playerSprite = await Sprite(
       imageRect: ImageRect(
         image: 'rogue.png',
         rect: IntRect(0, 0, 100, 100),
         color: Colors.yellow,
       ),
       transform: Transform2D(
-        translate: Offset(50 * 3.0, 50 * 3.0),
-        scale: 3,
         anchor: Offset(50, 50),
+        scale: 3,
+        translate: Offset(100, 100),
+      ),
+    ).load();
+
+    playerFireAnimation = await AnimatedSprite.fromUniformSpriteSheet(
+      'rogue.png',
+      spriteSize: IntSize(100, 100),
+      atlasBounds: IntRect(0, 0, 10, 1),
+      frameTime: 0.08,
+      color: Colors.redAccent,
+      transform: Transform2D(
+        anchor: Offset(50, 50),
+        scale: 3.0,
+      ),
+    ).load();
+
+    boomAnimation = await AnimatedSprite.fromUniformSpriteSheet(
+      'boom3.png',
+      spriteSize: IntSize(128, 128),
+      atlasBounds: IntRect(0, 0, 8, 8),
+      frameTime: 0.03,
+      transform: Transform2D(
+        anchor: Offset(64, 64),
       ),
     ).load();
 
@@ -41,8 +66,10 @@ class MyKeyboardGame extends Game {
     //debugPrint(keysPressed.toString());
   }
 
+  Offset dir;
+
   void handleKeyboard(Map<String, bool> keysPressed) {
-    Offset dir = Offset(0, 0);
+    dir = Offset(0, 0);
     if (isPressed('h', keysPressed)) {
       dir += Offset(-1, 0);
     }
@@ -55,27 +82,40 @@ class MyKeyboardGame extends Game {
     if (isPressed('k', keysPressed)) {
       dir += Offset(0, -1);
     }
+    fire = isPressed('f', keysPressed);
+
     if (dir != Offset.zero) {
       vel = (dir / dir.distance) * 300.0;
     }
   }
 
-  @override
-  void update(double dt) {
-    if (rogue == null) {
-      return;
-    }
-    handleKeyboard(keysPressed);
-    rogue.transform.translate += vel * dt;
+  void updatePlayer(double dt) {
+    playerSprite.transform.translate += vel * dt;
     vel *= 0.95;
     spriteRenderer.clear();
-    spriteRenderer.add(rogue);
+    if (fire) {
+      playerFireAnimation.transform.translate = playerSprite.transform.translate;
+      playerFireAnimation.update(dt);
+      spriteRenderer.add(playerFireAnimation.sprite);
+
+      boomAnimation.transform.translate = playerSprite.transform.translate;
+      boomAnimation.transform.translate += dir * 100.0 + Offset(0, -32);
+      boomAnimation.update(dt);
+      spriteRenderer.add(boomAnimation.sprite);
+    } else {
+      spriteRenderer.add(playerSprite);
+    }
+  }
+
+  @override
+  void update(double dt) {
+    if (playerSprite == null) return;
+    handleKeyboard(keysPressed);
+    updatePlayer(dt);
   }
 
   @override
   void paint(Canvas canvas, Size size) {
-    super.paint(canvas, size);
-
     spriteRenderer.render(canvas, size);
   }
 }
