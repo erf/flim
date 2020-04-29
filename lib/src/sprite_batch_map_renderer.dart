@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'assets.dart';
 import 'sprite.dart';
 import 'sprite_batch_renderer.dart';
 import 'image_rect.dart';
