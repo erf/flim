@@ -13,11 +13,12 @@ import 'transform2d.dart';
 
 /// An animated sprite - a list of [Frame]'s which changes over time
 class AnimatedSprite {
-  String image;
+  final String image;
   Transform2D transform;
-  List<Frame> frames;
+  final List<Frame> frames;
   int index;
   double time;
+  final double totalTime;
 
   AnimatedSprite({
     this.image,
@@ -25,7 +26,7 @@ class AnimatedSprite {
     this.frames = const [],
     this.index = 0,
     this.time = 0.0,
-  });
+  }) : totalTime = frames.fold(0.0, (prev, frame) => prev + frame.time);
 
   /// getter for current frame
   Frame get currentFrame => frames[index];
@@ -105,22 +106,21 @@ class AnimatedSprite {
     );
   }
 
-  double get sumTime => frames.fold(0.0, (prev, frame) => prev + frame.time);
-
+  /// find index for frame given time
   int findIndex(double time) {
-    double totalTime = 0.0;
+    double sumTime = 0.0;
     for (int i = 0; i < frames.length; i++) {
-      totalTime += frames[i].time;
-      if (time < totalTime) {
+      sumTime += frames[i].time;
+      if (time < sumTime) {
         return i;
       }
     }
     return frames.length - 1;
   }
 
+  /// update time and find new frame index
   void update(double dt) {
     time += dt;
-    double totalTime = sumTime;
     if (time > totalTime) {
       time = time % totalTime;
     }
