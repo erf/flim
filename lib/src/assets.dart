@@ -12,20 +12,20 @@ class Assets {
   static final Assets instance = Assets._privateConstructor();
 
   /// base image path
-  String imageBasePath;
+  String imagePath;
 
   /// base string path
-  String stringBasePath;
+  String stringPath;
 
   /// base json path
-  String jsonBasePath;
+  String jsonPath;
 
   /// image cache
   Map<String, Future<Image>> _imageCache = {};
 
   /// load image asset
   Future<Image> _loadImage(AssetBundle rootBundle, String name) async {
-    final String key = imageBasePath == null ? name : imageBasePath + name;
+    final String key = imagePath == null ? name : imagePath + name;
     final ByteData data = await rootBundle.load(key);
     final Image image = await decodeImageFromList(data.buffer.asUint8List());
     return image;
@@ -37,13 +37,13 @@ class Assets {
   }
 
   Future<String> loadString(AssetBundle rootBundle, String name) async {
-    final String key = stringBasePath == null ? name : stringBasePath + name;
+    final String key = stringPath == null ? name : stringPath + name;
     final String data = await rootBundle.loadString(key, cache: true);
     return data;
   }
 
   Future<Map<String, dynamic>> loadJson(AssetBundle rootBundle, String name) async {
-    final String key = jsonBasePath == null ? name : jsonBasePath + name;
+    final String key = jsonPath == null ? name : jsonPath + name;
     final String data = await rootBundle.loadString(key, cache: true);
     return await jsonDecode(data);
   }

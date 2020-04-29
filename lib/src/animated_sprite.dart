@@ -83,6 +83,7 @@ class AnimatedSprite {
       for (int col = atlasBounds.left; col < atlasBounds.width; col++) {
         frames.add(
           Frame(
+            time: frameTime,
             sprite: Sprite(
               transform: Transform2D(),
               imageRect: ImageRect(
@@ -96,14 +97,13 @@ class AnimatedSprite {
                 ),
               ),
             ),
-            time: frameTime,
           ),
         );
       }
     }
     return AnimatedSprite(
-      frames: frames,
       transform: transform,
+      frames: frames,
     );
   }
 
