@@ -1,4 +1,4 @@
-# flim
+# flim ✨
 
 minimal data-driven sprite game lib for Flutter
 
