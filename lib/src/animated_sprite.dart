@@ -4,26 +4,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import 'assets.dart';
+import 'frame.dart';
 import 'image_rect.dart';
 import 'sprite.dart';
 import 'int_rect.dart';
 import 'int_size.dart';
 import 'transform2d.dart';
-
-/// a single frame in an animation
-class Frame {
-  ImageRect imageRect;
-  double time;
-
-  Frame({this.imageRect, this.time});
-
-  factory Frame.fromJson(json, {String image}) {
-    return Frame(
-      imageRect: ImageRect.fromJson(json['imageRect'], image: image),
-      time: json['time'] == null ? 0.0 : (json['time'] as num).toDouble(),
-    );
-  }
-}
 
 /// an animated sprite
 /// a list of frames which change over time
@@ -47,19 +33,23 @@ class AnimatedSprite {
   /// getter for current frame
   Frame get currentFrame => frames[index];
 
-  /// image rect for current frame
-  ImageRect get imageRect => currentFrame.imageRect;
-
   /// return the current frame + transform as a sprite
   Sprite get sprite {
+    var t = Transform2D();
+    if (currentFrame.sprite.transform != null) {
+      t.translate = transform.translate + currentFrame.sprite.transform.translate;
+      t.rotation = transform.rotation + currentFrame.sprite.transform.rotation;
+      t.scale = transform.scale + currentFrame.sprite.transform.scale;
+      t.anchor = transform.anchor + currentFrame.sprite.transform.anchor;
+    }
     return Sprite(
-      transform: transform,
-      imageRect: imageRect,
+      transform: t,
+      imageRect: currentFrame.sprite.imageRect,
     );
   }
 
   Future<AnimatedSprite> load() async {
-    await Assets.instance.preLoadImages(frames.map((e) => e.imageRect.image).toList());
+    await Assets.instance.preLoadSprites(frames.map((e) => e.sprite).toList());
     return this;
   }
 
@@ -94,14 +84,16 @@ class AnimatedSprite {
       for (int col = numSpriteBounds.left; col < numSpriteBounds.width; col++) {
         frames.add(
           Frame(
-            imageRect: ImageRect(
-              image: image,
-              color: color,
-              rect: IntRect(
-                col * subImageSize.width,
-                row * subImageSize.height,
-                subImageSize.width,
-                subImageSize.height,
+            sprite: Sprite(
+              imageRect: ImageRect(
+                image: image,
+                color: color,
+                rect: IntRect(
+                  col * subImageSize.width,
+                  row * subImageSize.height,
+                  subImageSize.width,
+                  subImageSize.height,
+                ),
               ),
             ),
             time: frameTime,

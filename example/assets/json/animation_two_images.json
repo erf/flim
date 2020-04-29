@@ -1,22 +1,33 @@
-  {
-    "transform": {
-      "translate": [0, 0],
-      "scale": 1.0
-    },
-    "frames": [
-      {
+{
+  "transform": {
+    "translate": [ 0, 0 ],
+    "scale": 1.0
+  },
+  "frames": [ {
+      "sprite": {
         "imageRect": {
           "image": "boom3.png",
           "rect": [ 512, 512, 128, 128 ]
         },
-        "time": 1.0
+        "transform": {
+          "anchor": [64, 64],
+          "translate": [100, 100]
+        }
       },
-      {
+      "time": 1.0
+    }, {
+      "sprite": {
         "imageRect": {
           "image": "rogue.png",
-          "rect": [ 0, 0, 128, 128 ]
+          "rect": [ 0, 0, 100, 100 ]
         },
-        "time": 1.0
-      }
-    ]
-  }
+        "transform": {
+          "anchor": [50, 50],
+          "scale": 2.0,
+          "translate": [100, 100]
+        }
+      },
+      "time": 0.3
+    }
+  ]
+}

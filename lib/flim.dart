@@ -18,3 +18,4 @@ export 'src/sprite_widget.dart';
 export 'src/animated_sprite_widget.dart';
 export 'src/game_render_box.dart';
 export 'src/sprite_renderer.dart';
+export 'src/frame.dart';

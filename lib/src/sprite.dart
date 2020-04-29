@@ -12,7 +12,6 @@ class Sprite {
 
   Sprite({this.imageRect, this.transform});
 
-  @override
   Future<Sprite> load() async {
     await Assets.instance.preLoadSprites([this]);
     if (imageRect.rect == null) {
@@ -28,9 +27,9 @@ class Sprite {
     return spriteFromJson;
   }
 
-  factory Sprite.fromJson(Map<String, dynamic> json) {
+  factory Sprite.fromJson(Map<String, dynamic> json, {String image}) {
     return Sprite(
-      imageRect: ImageRect.fromJson(json['imageRect']),
+      imageRect: ImageRect.fromJson(json['imageRect'], image: image),
       transform: Transform2D.fromJson(json['transform']),
     );
   }
