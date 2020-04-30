@@ -48,4 +48,15 @@ class Transform2D {
       anchor: anchor + arg.anchor,
     );
   }
+
+  RSTransform get asRsTransform {
+    return RSTransform.fromComponents(
+      scale: scale,
+      anchorX: anchor.dx,
+      anchorY: anchor.dy,
+      rotation: rotation,
+      translateX: translate.dx,
+      translateY: translate.dy,
+    );
+  }
 }

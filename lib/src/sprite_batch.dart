@@ -18,16 +18,8 @@ class SpriteBatch {
   SpriteBatch(this.atlas);
 
   void add(Sprite sprite) {
-    final transform = RSTransform.fromComponents(
-      scale: sprite.transform.scale,
-      anchorX: sprite.transform.anchor.dx,
-      anchorY: sprite.transform.anchor.dy,
-      rotation: sprite.transform.rotation,
-      translateX: sprite.transform.translate.dx,
-      translateY: sprite.transform.translate.dy,
-    );
     rects.add(sprite.imageRect.rect.asRect);
-    transforms.add(transform ?? defaultTransform);
+    transforms.add(sprite.transform.asRsTransform ?? defaultTransform);
     colors.add(sprite.imageRect.color ?? defaultColor);
   }
 
