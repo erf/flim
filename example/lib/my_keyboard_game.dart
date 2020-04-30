@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
@@ -12,8 +14,10 @@ class MyKeyboardGame extends Game {
   Offset vel = Offset(0, 0);
   Map<String, bool> keysPressed = {};
   bool fire = false;
+  Size size;
+  Random random = Random();
 
-  MyKeyboardGame();
+  MyKeyboardGame(this.size);
 
   @override
   Future<Game> initialize() async {
@@ -21,7 +25,6 @@ class MyKeyboardGame extends Game {
       imageRect: ImageRect(
         image: 'rogue.png',
         rect: IntRect(0, 0, 100, 100),
-        color: Colors.yellow,
       ),
       transform: Transform2(
         anchor: Offset(50, 50),
@@ -35,7 +38,7 @@ class MyKeyboardGame extends Game {
       spriteSize: IntSize(100, 100),
       atlasBounds: IntRect(0, 0, 10, 1),
       frameDuration: 0.08,
-      color: Colors.redAccent,
+      color: Colors.yellow,
       transform: Transform2(
         anchor: Offset(50, 50),
         scale: 3.0,
@@ -82,7 +85,14 @@ class MyKeyboardGame extends Game {
     if (isPressed('k', keysPressed)) {
       dir += Offset(0, -1);
     }
-    fire = isPressed('f', keysPressed);
+
+    bool firePressed = isPressed('f', keysPressed);
+    if (firePressed && !fire) {
+      double dx = random.nextInt(size.width.toInt()).toDouble();
+      double dy = random.nextInt(size.height.toInt()).toDouble();
+      boomAnimation.transform.translate = Offset(dx, dy);
+    }
+    fire = firePressed;
 
     if (dir != Offset.zero) {
       vel = (dir / dir.distance) * 300.0;
@@ -98,8 +108,6 @@ class MyKeyboardGame extends Game {
       playerFireAnimation.update(dt);
       spriteBatchMap.add(playerFireAnimation.sprite);
 
-      boomAnimation.transform.translate = playerSprite.transform.translate;
-      boomAnimation.transform.translate += dir * 100.0 + Offset(0, -32);
       boomAnimation.update(dt);
       spriteBatchMap.add(boomAnimation.sprite);
     } else {

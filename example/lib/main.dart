@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Stack(
       children: [
         FutureBuilder(
-          future: MyKeyboardGame().initialize(),
+          future: MyKeyboardGame(MediaQuery.of(context).size).initialize(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return GameWidget(snapshot.data);
