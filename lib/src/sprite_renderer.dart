@@ -9,7 +9,7 @@ class SpriteRenderer {
 
   SpriteRenderer(this.sprite);
 
-  void render(Canvas canvas, Size size) {
+  void render(Canvas canvas) {
     if (sprite.imageRect.color != null)
       paint.colorFilter = ColorFilter.mode(sprite.imageRect.color, BlendMode.dstOver);
     Rect src = sprite.imageRect.rect.asRect;

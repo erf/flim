@@ -14,7 +14,7 @@ class SpritePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    spriteRenderer.render(canvas, size);
+    spriteRenderer.render(canvas);
   }
 
   @override
