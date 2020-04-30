@@ -13,12 +13,13 @@ class MyBenchmarkGame extends Game {
   @override
   Future<Game> initialize() async {
     var random = Random();
+    List<Future<Sprite>> spriteTasks = [];
     for (int i = 0; i < 2500; i++) {
       int rx = random.nextInt(8);
       int ry = random.nextInt(8);
       double dx = random.nextInt(size.width.toInt()).toDouble();
       double dy = random.nextInt(size.height.toInt()).toDouble();
-      final boom = await Sprite(
+      final spriteFuture = Sprite(
         imageRect: ImageRect(
           image: 'boom3.png',
           rect: IntRect(128 * rx, 128 * ry, 128, 128),
@@ -29,8 +30,11 @@ class MyBenchmarkGame extends Game {
           anchor: Offset(64, 64),
         ),
       ).load();
-      spriteBatchMap.add(boom);
+      spriteTasks.add(spriteFuture);
     }
+    final List<Sprite> sprites = await Future.wait(spriteTasks);
+    spriteBatchMap.addAll(sprites);
+
     return this;
   }
 

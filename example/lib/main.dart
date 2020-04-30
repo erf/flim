@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flim/flim.dart';
 
 import 'my_game_widget.dart';
-import 'my_game.dart';
+import 'my_playground_game.dart';
 import 'my_simple_game.dart';
 import 'my_keyboard_game.dart';
 

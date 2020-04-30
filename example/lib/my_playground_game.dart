@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
@@ -58,24 +56,7 @@ class MyGame extends Game {
 
     jsonAnimation = await AnimatedSprite.loadJson('animation.json');
 
-    //await createRandomSprites();
-
     return this;
-  }
-
-  createRandomSprites() async {
-    var random = Random();
-    for (int i = 0; i < 10000; i++) {
-      int rx = random.nextInt(8);
-      int ry = random.nextInt(8);
-      double dx = random.nextInt(500).toDouble(); // TODO use screen width
-      double dy = random.nextInt(500).toDouble(); // TODO use screen height
-      final boom = await Sprite(
-        imageRect: ImageRect(image: 'boom3.png', rect: IntRect(128 * rx, 128 * ry, 128, 128)),
-        transform: Transform2(translate: Offset(dx, dy), scale: 1),
-      ).load();
-      spriteRendererBenchmark.add(boom);
-    }
   }
 
   @override
@@ -94,14 +75,13 @@ class MyGame extends Game {
     spriteRendererBenchmark.render(canvas);
 
     spriteRenderer.clear();
-    level.sprites.forEach((sprite) {
-      spriteRenderer.add(sprite);
-    });
-    level.animations.forEach((animation) {
-      spriteRenderer.add(animation.sprite);
-    });
+
+    spriteRenderer.addAll(level.sprites);
+    spriteRenderer.addAll(level.animations.map((e) => e.sprite).toList());
+
     spriteRenderer.add(rogueAnimation.sprite);
     spriteRenderer.add(jsonAnimation.sprite);
+
     spriteRenderer.render(canvas);
 
     spriteRendererLayer1.render(canvas);

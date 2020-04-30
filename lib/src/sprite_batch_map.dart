@@ -21,6 +21,13 @@ class SpriteBatchMap {
     spriteBatchMap[image].add(sprite);
   }
 
+  /// add a list of sprites
+  void addAll(List<Sprite> sprites) {
+    sprites.forEach((sprite) {
+      add(sprite);
+    });
+  }
+
   /// render sprites effectively
   void render(Canvas canvas) {
     spriteBatchMap.forEach((asset, spriteBatch) {

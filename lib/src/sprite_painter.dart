@@ -5,12 +5,10 @@ import 'sprite.dart';
 
 /// custom painter for a single sprite, used by sprite widget
 class SpritePainter extends CustomPainter {
-  Sprite sprite;
-  SpriteRenderer spriteRenderer;
+  final Sprite sprite;
+  final SpriteRenderer spriteRenderer;
 
-  SpritePainter(this.sprite) {
-    spriteRenderer = SpriteRenderer(this.sprite);
-  }
+  SpritePainter(this.sprite) : spriteRenderer = SpriteRenderer(sprite);
 
   @override
   void paint(Canvas canvas, Size size) {
