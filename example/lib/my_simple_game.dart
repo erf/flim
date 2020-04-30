@@ -13,7 +13,7 @@ class MySimpleGame extends Game {
         image: 'rogue.png',
         rect: IntRect(0, 0, 100, 100),
       ),
-      transform: Transform2D(
+      transform: Transform2(
         translate: Offset(100, 100),
         scale: 3,
         anchor: Offset(50, 50),

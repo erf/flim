@@ -4,14 +4,14 @@ import 'package:flutter/services.dart';
 
 import 'image_rect.dart';
 import 'int_rect.dart';
-import 'transform2d.dart';
+import 'transform2.dart';
 import 'assets.dart';
 
 /// an image rect with transformations
 class Sprite {
   ui.Image image;
   ImageRect imageRect;
-  Transform2D transform;
+  Transform2 transform;
 
   Sprite({this.image, this.imageRect, this.transform});
 
@@ -32,7 +32,7 @@ class Sprite {
   factory Sprite.fromJson(Map<String, dynamic> json, {String image}) {
     return Sprite(
       imageRect: ImageRect.fromJson(json['imageRect'], image: image),
-      transform: Transform2D.fromJson(json['transform']),
+      transform: Transform2.fromJson(json['transform']),
     );
   }
 }

@@ -1,28 +1,28 @@
 import 'dart:ui';
 
 /// group transform for sprites and animated sprites
-class Transform2D {
+class Transform2 {
   Offset translate;
   double scale;
   double rotation;
   Offset anchor;
 
-  Transform2D({
+  Transform2({
     this.translate = Offset.zero,
     this.scale = 1.0,
     this.rotation = 0.0,
     this.anchor = Offset.zero,
   });
 
-  factory Transform2D.fromJson(json) {
+  factory Transform2.fromJson(json) {
     if (json == null) {
-      return Transform2D();
+      return Transform2();
     }
     final translate = json['translate'];
     final rotation = json['rotation'];
     final scale = json['scale'];
     final anchor = json['anchor'];
-    return Transform2D(
+    return Transform2(
       translate: translate == null
           ? Offset.zero
           : Offset(
@@ -40,8 +40,8 @@ class Transform2D {
     );
   }
 
-  Transform2D operator +(Transform2D arg) {
-    return Transform2D(
+  Transform2 operator +(Transform2 arg) {
+    return Transform2(
       translate: translate + arg.translate,
       rotation: rotation + arg.rotation,
       scale: scale * arg.scale,

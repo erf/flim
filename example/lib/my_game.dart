@@ -34,7 +34,7 @@ class MyGame extends Game {
       spriteSize: IntSize(100, 100),
       atlasBounds: IntRect(0, 0, 10, 1),
       frameTime: 0.08,
-      transform: Transform2D(
+      transform: Transform2(
         translate: Offset(128 * 1.0, 450),
         anchor: Offset(50, 50),
         scale: 3.0,
@@ -43,12 +43,12 @@ class MyGame extends Game {
 
     final angel = await Sprite(
       imageRect: ImageRect(image: 'AngelBrown.PNG'),
-      transform: Transform2D(translate: Offset(260, 300), scale: 3),
+      transform: Transform2(translate: Offset(260, 300), scale: 3),
     ).load();
 
     final rogue2 = await Sprite(
       imageRect: ImageRect(image: 'rogue.png', rect: IntRect(0, 0, 100, 100)),
-      transform: Transform2D(translate: Offset(155, 300), scale: 3),
+      transform: Transform2(translate: Offset(155, 300), scale: 3),
     ).load();
 
     spriteRendererLayer1.add(angel);
@@ -73,7 +73,7 @@ class MyGame extends Game {
       double dy = random.nextInt(500).toDouble(); // TODO use screen height
       final boom = await Sprite(
         imageRect: ImageRect(image: 'boom3.png', rect: IntRect(128 * rx, 128 * ry, 128, 128)),
-        transform: Transform2D(translate: Offset(dx, dy), scale: 1),
+        transform: Transform2(translate: Offset(dx, dy), scale: 1),
       ).load();
       spriteRendererBenchmark.add(boom);
     }

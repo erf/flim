@@ -12,7 +12,7 @@ export 'src/int_size.dart';
 export 'src/sprite.dart';
 export 'src/sprite_batch.dart';
 export 'src/sprite_batch_map.dart';
-export 'src/transform2d.dart';
+export 'src/transform2.dart';
 export 'src/sprite_painter.dart';
 export 'src/sprite_widget.dart';
 export 'src/animated_sprite_widget.dart';

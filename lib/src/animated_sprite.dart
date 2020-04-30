@@ -8,9 +8,9 @@ import 'image_rect.dart';
 import 'sprite.dart';
 import 'int_rect.dart';
 import 'int_size.dart';
-import 'transform2d.dart';
+import 'transform2.dart';
 
-/// A single frame in an [AnimatedSprite]
+/// A single frame in an [AnimatedSprite] as a [Sprite] with a given duration [time]
 class Frame {
   Sprite sprite;
   double time;
@@ -27,8 +27,8 @@ class Frame {
 
 /// An animated sprite - a list of [Frame]'s which changes over time
 class AnimatedSprite {
-  final String image; // set if frames use same image
-  Transform2D transform;
+  final String image; // set if all frames use same image
+  Transform2 transform;
   final List<Frame> frames;
   int index;
   double time;
@@ -45,7 +45,7 @@ class AnimatedSprite {
   /// getter for current frame
   Frame get currentFrame => frames[index];
 
-  /// return the current frame + transform as a sprite
+  /// return the current frame + animation transform as a sprite
   Sprite get sprite {
     final s = currentFrame.sprite;
     return Sprite(
@@ -55,21 +55,24 @@ class AnimatedSprite {
     );
   }
 
+  /// load all images in frames
   Future<AnimatedSprite> load() async {
     await Future.wait(frames.map((e) => e.sprite.load()));
     return this;
   }
 
+  /// load animation from json asset and load frame images
   static Future<AnimatedSprite> loadJson(String name) async {
     final jsonAsset = await Assets.instance.loadJson(rootBundle, name);
     final animatedSprite = await AnimatedSprite.fromJson(jsonAsset).load();
     return animatedSprite;
   }
 
+  /// parse animation json
   factory AnimatedSprite.fromJson(Map<String, dynamic> json) {
     return AnimatedSprite(
       image: json['image'],
-      transform: Transform2D.fromJson(json['transform']),
+      transform: Transform2.fromJson(json['transform']),
       frames: json['frames'].map<Frame>((frameJson) {
         return Frame.fromJson(frameJson, image: json['image']);
       }).toList(),
@@ -99,13 +102,14 @@ class AnimatedSprite {
     index = findIndex(time);
   }
 
+  /// load an animation from a uniform sprite sheet given size and bounds
   factory AnimatedSprite.fromUniformSpriteSheet(
     String image, {
     @required IntSize spriteSize, // the size of the sub-images inside the sprite sheet
     @required IntRect atlasBounds, // the bounds of the num of sprites inside the sheet
     @required double frameTime,
     Color color = const Color(0x00000000),
-    Transform2D transform,
+    Transform2 transform,
   }) {
     List<Frame> frames = [];
     for (int row = atlasBounds.top; row < atlasBounds.height; row++) {
@@ -114,7 +118,7 @@ class AnimatedSprite {
           Frame(
             time: frameTime,
             sprite: Sprite(
-              transform: Transform2D(),
+              transform: Transform2(),
               imageRect: ImageRect(
                 image: image,
                 color: color,

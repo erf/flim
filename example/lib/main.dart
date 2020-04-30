@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
               rect: IntRect(512, 512, 128, 128),
               color: Colors.yellowAccent,
             ),
-            transform: Transform2D(
+            transform: Transform2(
               anchor: Offset(64.0, 64.0),
             ),
           ).load(),
@@ -133,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
         FutureBuilder(
           future: Sprite(
             imageRect: ImageRect(image: 'AngelBrown.PNG'),
-            transform: Transform2D(
+            transform: Transform2(
               translate: Offset(100, 200),
               scale: 2.0,
               rotation: 3.14 / 4.0,
@@ -154,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
             atlasBounds: IntRect(0, 0, 8, 8),
             frameTime: 0.03,
             color: Colors.transparent,
-            transform: Transform2D(
+            transform: Transform2(
               translate: Offset(0.0, 128 * 2.0),
             ),
           ).load(),

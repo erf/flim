@@ -23,7 +23,7 @@ class MyKeyboardGame extends Game {
         rect: IntRect(0, 0, 100, 100),
         color: Colors.yellow,
       ),
-      transform: Transform2D(
+      transform: Transform2(
         anchor: Offset(50, 50),
         scale: 3,
         translate: Offset(100, 100),
@@ -36,7 +36,7 @@ class MyKeyboardGame extends Game {
       atlasBounds: IntRect(0, 0, 10, 1),
       frameTime: 0.08,
       color: Colors.redAccent,
-      transform: Transform2D(
+      transform: Transform2(
         anchor: Offset(50, 50),
         scale: 3.0,
       ),
@@ -47,7 +47,7 @@ class MyKeyboardGame extends Game {
       spriteSize: IntSize(128, 128),
       atlasBounds: IntRect(0, 0, 8, 8),
       frameTime: 0.03,
-      transform: Transform2D(
+      transform: Transform2(
         anchor: Offset(64, 64),
       ),
     ).load();
