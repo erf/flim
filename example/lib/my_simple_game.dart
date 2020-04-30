@@ -25,6 +25,14 @@ class MySimpleGame extends Game {
     return this;
   }
 
+  void lifecycleStateChange(AppLifecycleState state) {
+    debugPrint('lifeCycleStateChange' + state.toString());
+  }
+
+  void resize(Size size) {
+    debugPrint('resize' + size.toString());
+  }
+
   @override
   void paint(Canvas canvas, Size size) {
     super.paint(canvas, size);

@@ -14,7 +14,7 @@ class GameRenderBox extends RenderBox with WidgetsBindingObserver {
   GameLoop gameLoop;
 
   GameRenderBox(this.game) {
-    gameLoop = GameLoop(update);
+    gameLoop = GameLoop(_onTick);
   }
 
   @override
@@ -23,7 +23,7 @@ class GameRenderBox extends RenderBox with WidgetsBindingObserver {
   @override
   void performResize() {
     super.performResize();
-    game.resize(constraints.biggest);
+    game.resize(constraints.smallest);
   }
 
   @override
@@ -40,7 +40,7 @@ class GameRenderBox extends RenderBox with WidgetsBindingObserver {
     super.detach();
   }
 
-  void update(double dt) {
+  void _onTick(double dt) {
     if (!attached) return;
     game.update(dt);
     markNeedsPaint();

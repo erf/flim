@@ -1,13 +1,13 @@
 import 'package:flutter/scheduler.dart';
 
-/// Deliver frame updates for [GameRenderBox] using a [Ticker]
+/// Deliver frame updates using a [Ticker]
 class GameLoop {
   final Function callback;
   Duration _prev = Duration.zero;
   Ticker _ticker;
 
   GameLoop(this.callback) {
-    _ticker = Ticker(_tick);
+    _ticker = Ticker(_onTick);
   }
 
   void start() {
@@ -23,18 +23,16 @@ class GameLoop {
 
   set muted(bool value) => _ticker.muted = value;
 
-  void _tick(Duration timestamp) {
-    final double dt = _calcDt(timestamp);
-    callback(dt);
+  void _onTick(Duration timestamp) {
+    callback(_dt(timestamp));
   }
 
-  double _calcDt(Duration now) {
+  double _dt(Duration now) {
     Duration delta = now - _prev;
     if (_prev == Duration.zero) {
       delta = Duration.zero;
     }
     _prev = now;
-    final double dt = delta.inMicroseconds / Duration.microsecondsPerSecond;
-    return dt;
+    return delta.inMicroseconds / Duration.microsecondsPerSecond;
   }
 }
