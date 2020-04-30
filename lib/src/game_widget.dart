@@ -4,8 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'game_widget_embedded.dart';
 import 'game.dart';
 
-/// game widget - encapsulates a game, game painter and game loop
-/// also handles input and state changes
+/// Encapsulates widgets for keyboard input, gestures and a EmbeddedGameWidget
 class GameWidget extends StatelessWidget {
   final Game game;
   final Size size;

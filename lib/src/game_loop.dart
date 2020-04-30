@@ -1,6 +1,6 @@
 import 'package:flutter/scheduler.dart';
 
-/// abstraction around Ticker to deliver frame updates with dt to custom painters
+/// Deliver frame updates for [GameRenderBox] using a [Ticker]
 class GameLoop {
   final Function callback;
   Duration _prev = Duration.zero;

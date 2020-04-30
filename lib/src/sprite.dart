@@ -1,7 +1,5 @@
 import 'dart:ui' as ui;
 
-import 'package:flutter/services.dart';
-
 import 'image_rect.dart';
 import 'int_rect.dart';
 import 'transform2.dart';
@@ -25,8 +23,7 @@ class Sprite {
 
   static Future<Sprite> loadJson(String name) async {
     final jsonSprite = await JsonAssets.instance.load(name);
-    final spriteFromJson = await Sprite.fromJson(jsonSprite).load();
-    return spriteFromJson;
+    return await Sprite.fromJson(jsonSprite).load();
   }
 
   factory Sprite.fromJson(Map<String, dynamic> json, {String image}) {

@@ -6,6 +6,7 @@ import 'animated_sprite.dart';
 import 'game.dart';
 import 'sprite_batch_map.dart';
 
+/// A Game which updates and renders an AnimatedSprite, used by a GameWidget
 class AnimatedSpriteGame extends Game {
   AnimatedSprite animatedSprite;
   SpriteBatchMap spriteBatchMap = SpriteBatchMap();

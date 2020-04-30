@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'game.dart';
 import 'game_loop.dart';
 
+/// update and paints a game
 class GameRenderBox extends RenderBox with WidgetsBindingObserver {
   Game game;
   GameLoop gameLoop;

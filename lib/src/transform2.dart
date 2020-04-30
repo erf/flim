@@ -40,6 +40,7 @@ class Transform2 {
     );
   }
 
+  /// used by [AnimatedSprite] to combine the transform of itself and a [Frame]
   Transform2 operator +(Transform2 arg) {
     return Transform2(
       translate: translate + arg.translate,
@@ -49,6 +50,7 @@ class Transform2 {
     );
   }
 
+  /// convenient method used by [SpriteBatch]
   RSTransform get asRsTransform {
     return RSTransform.fromComponents(
       scale: scale,

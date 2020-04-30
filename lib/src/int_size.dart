@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-/// we want to describe image sizes with ints
+/// describe image sizes using ints
 class IntSize {
   final int width;
   final int height;

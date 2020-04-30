@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 
 import 'sprite.dart';
 
-/// custom painter for sprites, used by sprite widget
+/// custom painter for a single sprite, used by sprite widget
 class SpritePainter extends CustomPainter {
   Sprite sprite;
   SpriteRenderer spriteRenderer;

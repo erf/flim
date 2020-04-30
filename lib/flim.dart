@@ -4,7 +4,6 @@ export 'src/animated_sprite.dart';
 export 'src/asset_cache.dart';
 export 'src/game.dart';
 export 'src/game_loop.dart';
-export 'src/game_painter.dart';
 export 'src/game_widget.dart';
 export 'src/game_widget_embedded.dart';
 export 'src/image_rect.dart';

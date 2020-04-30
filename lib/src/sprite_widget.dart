@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'sprite.dart';
 import 'sprite_painter.dart';
 
-/// widget for sprites
+/// Widget for a single sprite
 class SpriteWidget extends StatelessWidget {
   final Sprite sprite;
 

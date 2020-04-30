@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'int_rect.dart';
 
-/// a rect in an image, useful for sprite atlases
+/// A rect in an image, useful for sprite atlases
 class ImageRect {
   String image;
   IntRect rect;

@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-/// we want to describe pixel bounds in ints
+/// describe pixel bounds using ints
 class IntRect {
   final int left;
   final int top;
