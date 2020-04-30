@@ -1,3 +1,4 @@
+import 'package:example/my_benchmark_game.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flim/flim.dart';
@@ -43,6 +44,19 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('flim demo'),
       ),
       body: buildKeyboardGame(),
+    );
+  }
+
+  Widget buildBenchmarkGame() {
+    return FutureBuilder(
+      future: MyBenchmarkGame(MediaQuery.of(context).size).initialize(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return GameWidget(snapshot.data);
+        } else {
+          return Container();
+        }
+      },
     );
   }
 

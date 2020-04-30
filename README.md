@@ -32,7 +32,8 @@ To update animations call `AnimatedSprite.update` in `Game.update`. Then call
 `SpriteBatchMap.clear` before passing `AnimatedSprite.sprite` to 
 `SpriteBatchMap.add`.
 
-A render loop takes care of updating your game objects at ~60 fps.
+A render loop updates your game at ~60 fps, and gives you delta time (dt) since 
+previous update.
 
 See [example](example) folder for examples.
 
