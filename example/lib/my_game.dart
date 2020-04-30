@@ -22,7 +22,7 @@ class MyGame extends Game {
   @override
   Future<Game> initialize() async {
     // load level with sprites and animations from json file
-    level = Level.fromJson(await Assets.instance.loadJson(rootBundle, 'level.json'));
+    level = Level.fromJson(await JsonAssets.instance.load('level.json'));
 
     // load and cache sprite images
     await Future.wait(level.sprites.map((sprite) => sprite.load()));

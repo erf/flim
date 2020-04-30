@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'image_rect.dart';
 import 'int_rect.dart';
 import 'transform2.dart';
-import 'assets.dart';
+import 'asset_cache.dart';
 
 /// an image rect with transformations
 class Sprite {
@@ -16,7 +16,7 @@ class Sprite {
   Sprite({this.image, this.imageRect, this.transform});
 
   Future<Sprite> load() async {
-    image = await Assets.instance.loadImage(imageRect.image);
+    image = await ImageAssets.instance.load(imageRect.image);
     if (imageRect.rect == null) {
       imageRect.rect = IntRect(0, 0, image.width, image.height);
     }
@@ -24,7 +24,7 @@ class Sprite {
   }
 
   static Future<Sprite> loadJson(String name) async {
-    final jsonSprite = await Assets.instance.loadJson(rootBundle, name);
+    final jsonSprite = await JsonAssets.instance.load(name);
     final spriteFromJson = await Sprite.fromJson(jsonSprite).load();
     return spriteFromJson;
   }

@@ -8,6 +8,7 @@ minimal data-driven sprite game lib for Flutter
 - buffered sprite rendering using Canvas.drawAtlas (fast!)
 - data-driven; load sprites and animations as json
 - abstractions for game, render-loop, input, widgets and more
+- asset cache for images, json, strings and more
 - minimal and loosely coupled Flutter package
 
 ## Usage
@@ -19,11 +20,11 @@ Wrap your game or animation in a `GameWidget`, or add a single sprite using
 `SpriteWidget`.
 
 Add `Sprite` and `AnimatedSprite` from code or from json assets by calling
-`Sprite.loadJson`, `AnimatedSprite.loadJson` or `Assets.instance.loadJson` 
+`Sprite.loadJson`, `AnimatedSprite.loadJson` or `JsonAssets.instance.load`
 during `Game.initialize`.
 
 Load (and cache) images by calling `Sprite.load`,`AnimatedSprite.load` or 
-`Assets.instance.loadImage` during `Game.initialize`.
+`ImageAssets.instance.load` during `Game.initialize`.
 
 Render sprites using a `SpriteBatchMap` (in most cases). Add your sprite to it,
 then call `SpriteBatchMap.render` in `Game.render`.

@@ -1,9 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 
-import 'assets.dart';
+import 'asset_cache.dart';
 import 'image_rect.dart';
 import 'sprite.dart';
 import 'int_rect.dart';
@@ -63,7 +62,7 @@ class AnimatedSprite {
 
   /// load animation from json asset and load frame images
   static Future<AnimatedSprite> loadJson(String name) async {
-    final jsonAsset = await Assets.instance.loadJson(rootBundle, name);
+    final jsonAsset = await JsonAssets.instance.load(name);
     final animatedSprite = await AnimatedSprite.fromJson(jsonAsset).load();
     return animatedSprite;
   }

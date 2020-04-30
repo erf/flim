@@ -1,7 +1,7 @@
 library flim;
 
 export 'src/animated_sprite.dart';
-export 'src/assets.dart';
+export 'src/asset_cache.dart';
 export 'src/game.dart';
 export 'src/game_loop.dart';
 export 'src/game_painter.dart';
