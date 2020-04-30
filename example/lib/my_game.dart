@@ -33,7 +33,7 @@ class MyGame extends Game {
       'rogue.png',
       spriteSize: IntSize(100, 100),
       atlasBounds: IntRect(0, 0, 10, 1),
-      frameTime: 0.08,
+      frameDuration: 0.08,
       transform: Transform2(
         translate: Offset(128 * 1.0, 450),
         anchor: Offset(50, 50),

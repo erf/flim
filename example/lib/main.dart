@@ -42,20 +42,36 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('flim demo'),
       ),
-      body: buildAnimationWithTwoImage(),
+      body: buildKeyboardGame(),
     );
   }
 
-  Widget buildMyTestGame() {
-    return FutureBuilder(
-      future: MyKeyboardGame().initialize(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return GameWidget(snapshot.data);
-        } else {
-          return Container();
-        }
-      },
+  Widget buildKeyboardGame() {
+    return Stack(
+      children: [
+        FutureBuilder(
+          future: MyKeyboardGame().initialize(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return GameWidget(snapshot.data);
+            } else {
+              return Container();
+            }
+          },
+        ),
+        Padding(
+          padding: EdgeInsets.all(32),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Text(
+              'press \'hjkl\' to move and \'f\' to fire',
+              style: TextStyle(
+                fontSize: 17,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -152,7 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
             'boom3.png',
             spriteSize: IntSize(128, 128),
             atlasBounds: IntRect(0, 0, 8, 8),
-            frameTime: 0.03,
+            frameDuration: 0.03,
             color: Colors.transparent,
             transform: Transform2(
               translate: Offset(0.0, 128 * 2.0),

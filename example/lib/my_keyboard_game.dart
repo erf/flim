@@ -34,7 +34,7 @@ class MyKeyboardGame extends Game {
       'rogue.png',
       spriteSize: IntSize(100, 100),
       atlasBounds: IntRect(0, 0, 10, 1),
-      frameTime: 0.08,
+      frameDuration: 0.08,
       color: Colors.redAccent,
       transform: Transform2(
         anchor: Offset(50, 50),
@@ -46,7 +46,7 @@ class MyKeyboardGame extends Game {
       'boom3.png',
       spriteSize: IntSize(128, 128),
       atlasBounds: IntRect(0, 0, 8, 8),
-      frameTime: 0.03,
+      frameDuration: 0.03,
       transform: Transform2(
         anchor: Offset(64, 64),
       ),
