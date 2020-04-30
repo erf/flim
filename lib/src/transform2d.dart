@@ -39,4 +39,13 @@ class Transform2D {
             ),
     );
   }
+
+  Transform2D operator +(Transform2D arg) {
+    return Transform2D(
+      translate: translate + arg.translate,
+      rotation: rotation + arg.rotation,
+      scale: scale * arg.scale,
+      anchor: anchor + arg.anchor,
+    );
+  }
 }

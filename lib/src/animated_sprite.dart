@@ -47,17 +47,11 @@ class AnimatedSprite {
 
   /// return the current frame + transform as a sprite
   Sprite get sprite {
-    final currentSprite = currentFrame.sprite;
-    final currentTransform = currentSprite.transform;
+    final s = currentFrame.sprite;
     return Sprite(
-      image: currentSprite.image,
-      imageRect: currentSprite.imageRect,
-      transform: Transform2D(
-        translate: transform.translate + currentTransform.translate,
-        rotation: transform.rotation + currentTransform.rotation,
-        scale: transform.scale * currentTransform.scale,
-        anchor: transform.anchor + currentTransform.anchor,
-      ),
+      image: s.image,
+      imageRect: s.imageRect,
+      transform: transform + s.transform,
     );
   }
 
