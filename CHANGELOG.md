@@ -1,10 +1,10 @@
 # CHANGELOG
 
 ## [0.1.0]
-- initial release
+- initial release!
 - sprites and sprite animations
 - buffered sprite rendering using Canvas.drawAtlas
 - load sprites from json assets
-- game with render-loop, keyboard input, taps
-- game widget, sprite widget, animation widget
-- sprite, animation, keyboard and benchmark examples
+- game, render box, render-loop, widgets+
+- generic asset cache for images, json, strings etc
+- examples using sprites, animations, keyboard+
