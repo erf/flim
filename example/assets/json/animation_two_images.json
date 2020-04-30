@@ -4,7 +4,8 @@
     "scale": 1.0
   },
   "frames": [ {
-      "sprite": {
+    "duration": 1.0,
+    "sprite": {
         "imageRect": {
           "image": "boom3.png",
           "rect": [ 512, 512, 128, 128 ]
@@ -13,9 +14,9 @@
           "anchor": [64, 64],
           "translate": [100, 100]
         }
-      },
-      "time": 1.0
+      }
     }, {
+    "duration": 1.0,
       "sprite": {
         "imageRect": {
           "image": "rogue.png",
@@ -26,8 +27,7 @@
           "scale": 2.0,
           "translate": [100, 100]
         }
-      },
-      "time": 0.3
+      }
     }
   ]
 }

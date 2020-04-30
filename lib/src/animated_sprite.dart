@@ -10,17 +10,17 @@ import 'int_rect.dart';
 import 'int_size.dart';
 import 'transform2.dart';
 
-/// A single frame in an [AnimatedSprite] as a [Sprite] with a given duration [time]
+/// A single frame in an [AnimatedSprite] as a [Sprite] with a given duration [duration]
 class Frame {
   Sprite sprite;
-  double time;
+  double duration;
 
-  Frame({this.sprite, this.time});
+  Frame({this.sprite, this.duration});
 
   factory Frame.fromJson(json, {String image}) {
     return Frame(
       sprite: Sprite.fromJson(json['sprite'], image: image),
-      time: json['time'] == null ? 0.0 : (json['time'] as num).toDouble(),
+      duration: json['duration'] == null ? 0.0 : (json['duration'] as num).toDouble(),
     );
   }
 }
@@ -40,7 +40,7 @@ class AnimatedSprite {
     this.frames = const [],
     this.index = 0,
     this.time = 0.0,
-  }) : totalTime = frames.fold(0.0, (prev, frame) => prev + frame.time);
+  }) : totalTime = frames.fold(0.0, (prev, frame) => prev + frame.duration);
 
   /// getter for current frame
   Frame get currentFrame => frames[index];
@@ -85,7 +85,7 @@ class AnimatedSprite {
   int findIndex(double time) {
     double sumTime = 0.0;
     for (int i = 0; i < frames.length; i++) {
-      sumTime += frames[i].time;
+      sumTime += frames[i].duration;
       if (time < sumTime) {
         return i;
       }
@@ -102,12 +102,13 @@ class AnimatedSprite {
     index = findIndex(time);
   }
 
-  /// load an animation from a uniform sprite sheet given size and bounds
+  /// helper for loading an animation from a uniform sprite sheet given size and bounds
+  /// could add a per-frame-transform and duration
   factory AnimatedSprite.fromUniformSpriteSheet(
     String image, {
     @required IntSize spriteSize, // the size of the sub-images inside the sprite sheet
     @required IntRect atlasBounds, // the bounds of the num of sprites inside the sheet
-    @required double frameTime,
+    @required double frameDuration,
     Color color = const Color(0x00000000),
     Transform2 transform,
   }) {
@@ -116,7 +117,7 @@ class AnimatedSprite {
       for (int col = atlasBounds.left; col < atlasBounds.width; col++) {
         frames.add(
           Frame(
-            time: frameTime,
+            duration: frameDuration,
             sprite: Sprite(
               transform: Transform2(),
               imageRect: ImageRect(
