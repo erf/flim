@@ -13,16 +13,18 @@ class GameWidget extends LeafRenderObjectWidget {
 
   @override
   RenderBox createRenderObject(BuildContext context) {
-    return RenderConstrainedBox(
+    return RenderLimitedBox(
       child: GameRenderBox(game),
-      additionalConstraints: BoxConstraints.expand(width: size?.width, height: size?.height),
+      maxWidth: size?.width ?? double.infinity,
+      maxHeight: size?.height ?? double.infinity,
     );
   }
 
   @override
-  void updateRenderObject(BuildContext context, RenderConstrainedBox renderBox) {
+  void updateRenderObject(BuildContext context, RenderLimitedBox renderBox) {
     renderBox
       ..child = GameRenderBox(game)
-      ..additionalConstraints = BoxConstraints.expand(width: size?.width, height: size?.height);
+      ..maxWidth = size?.width ?? double.infinity
+      ..maxHeight = size?.height ?? double.infinity;
   }
 }

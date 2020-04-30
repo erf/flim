@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('flim demo'),
       ),
-      body: buildKeyboardGame(),
+      body: buildGameAndWidgets(),
     );
   }
 
