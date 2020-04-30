@@ -23,7 +23,7 @@ abstract class GenericCache<T> {
 typedef AssetDecoder<T> = Future<T> Function(Uint8List);
 
 /// A generic cache for assets, which return a type [T] given a [AssetDecoder]
-class AssetCache<T> extends GenericCache {
+class AssetCache<T> extends GenericCache<T> {
   /// decode asset bytes to type T
   AssetDecoder<T> decoder;
 
