@@ -40,9 +40,7 @@ class MyBenchmarkGame extends Game {
   }
 
   @override
-  void paint(Canvas canvas, Size size) {
-    super.paint(canvas, size);
-
-    spriteBatchMap.render(canvas, size);
+  void render(Canvas canvas) {
+    spriteBatchMap.render(canvas);
   }
 }

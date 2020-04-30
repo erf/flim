@@ -30,8 +30,7 @@ class SpriteBatch {
   }
 
   void render(
-    Canvas canvas,
-    Size size, {
+    Canvas canvas, {
     BlendMode blendMode,
     Rect cullRect,
     Paint paint,

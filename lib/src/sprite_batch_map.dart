@@ -22,9 +22,9 @@ class SpriteBatchMap {
   }
 
   /// render sprites effectively
-  void render(Canvas canvas, Size size) {
+  void render(Canvas canvas) {
     spriteBatchMap.forEach((asset, spriteBatch) {
-      spriteBatch.render(canvas, size);
+      spriteBatch.render(canvas);
     });
   }
 }

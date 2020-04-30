@@ -90,10 +90,8 @@ class MyGame extends Game {
   }
 
   @override
-  void paint(Canvas canvas, Size size) {
-    super.paint(canvas, size);
-
-    spriteRendererBenchmark.render(canvas, size);
+  void render(Canvas canvas) {
+    spriteRendererBenchmark.render(canvas);
 
     spriteRenderer.clear();
     level.sprites.forEach((sprite) {
@@ -104,9 +102,9 @@ class MyGame extends Game {
     });
     spriteRenderer.add(rogueAnimation.sprite);
     spriteRenderer.add(jsonAnimation.sprite);
-    spriteRenderer.render(canvas, size);
+    spriteRenderer.render(canvas);
 
-    spriteRendererLayer1.render(canvas, size);
-    spriteRendererLayer2.render(canvas, size);
+    spriteRendererLayer1.render(canvas);
+    spriteRendererLayer2.render(canvas);
   }
 }

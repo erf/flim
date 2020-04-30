@@ -23,7 +23,8 @@ class GameRenderBox extends RenderBox with WidgetsBindingObserver {
   @override
   void performResize() {
     super.performResize();
-    game.resize(constraints.smallest);
+    final Size size = constraints.biggest;
+    game.resize(size);
   }
 
   @override
@@ -50,7 +51,7 @@ class GameRenderBox extends RenderBox with WidgetsBindingObserver {
   void paint(PaintingContext context, Offset offset) {
     context.canvas.save();
     context.canvas.translate(offset.dx, offset.dy);
-    game.paint(context.canvas, size);
+    game.render(context.canvas);
     context.canvas.restore();
   }
 

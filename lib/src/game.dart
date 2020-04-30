@@ -10,7 +10,7 @@ abstract class Game {
 
   void update(double dt) {}
 
-  void paint(Canvas canvas, Size size) {}
+  void render(Canvas canvas) {}
 
   void lifecycleStateChange(AppLifecycleState state) {}
 

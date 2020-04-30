@@ -25,7 +25,7 @@ class AnimatedSpriteGame extends Game {
     spriteBatchMap.add(animatedSprite.sprite);
   }
 
-  void paint(Canvas canvas, Size size) {
-    spriteBatchMap.render(canvas, size);
+  void render(Canvas canvas) {
+    spriteBatchMap.render(canvas);
   }
 }

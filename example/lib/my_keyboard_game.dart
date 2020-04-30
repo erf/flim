@@ -70,6 +70,7 @@ class MyKeyboardGame extends Game {
   }
 
   Offset dir;
+
   void handleKeyboard(Map<String, bool> keysPressed) {
     dir = Offset(0, 0);
     if (isPressed('h', keysPressed)) {
@@ -122,7 +123,7 @@ class MyKeyboardGame extends Game {
   }
 
   @override
-  void paint(Canvas canvas, Size size) {
-    spriteBatchMap.render(canvas, size);
+  void render(Canvas canvas) {
+    spriteBatchMap.render(canvas);
   }
 }
