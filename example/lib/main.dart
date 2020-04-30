@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('flim demo'),
       ),
-      body: buildMyTestGame(),
+      body: buildAnimationWithTwoImage(),
     );
   }
 
@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
       future: AnimatedSprite.loadJson('animation_two_images.json'),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return AnimatedSpriteWidget(snapshot.data);
+          return EmbeddedGameWidget(AnimatedSpriteGame(snapshot.data));
         } else {
           return Container();
         }
@@ -160,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ).load(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return AnimatedSpriteWidget(snapshot.data);
+              return EmbeddedGameWidget(AnimatedSpriteGame(snapshot.data));
             } else {
               return Container();
             }

@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-/// group transform for sprites and animated sprites
+/// transforms used by sprites
 class Transform2 {
   Offset translate;
   double scale;
