@@ -4,9 +4,7 @@ import 'package:flutter/painting.dart';
 import 'package:flim/flim.dart';
 
 class MySimpleGame extends Game {
-  SpriteBatchMapRenderer spriteRenderer = SpriteBatchMapRenderer();
-
-  MySimpleGame();
+  SpriteBatchMap spriteBatchMap = SpriteBatchMap();
 
   @override
   Future<Game> initialize() async {
@@ -18,11 +16,11 @@ class MySimpleGame extends Game {
       transform: Transform2D(
         translate: Offset(100, 100),
         scale: 3,
-        anchor: Offset(50, 50)
+        anchor: Offset(50, 50),
       ),
     ).load();
 
-    spriteRenderer.add(rogue);
+    spriteBatchMap.add(rogue);
 
     return this;
   }
@@ -31,6 +29,6 @@ class MySimpleGame extends Game {
   void paint(Canvas canvas, Size size) {
     super.paint(canvas, size);
 
-    spriteRenderer.render(canvas, size);
+    spriteBatchMap.render(canvas, size);
   }
 }

@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'sprite.dart';
 
 /// render a set of sprites inside a single image atlas using Canvas.drawAtlas
-class SpriteBatchRenderer {
+class SpriteBatch {
   Image atlas;
   List<Rect> rects = [];
   List<RSTransform> transforms = [];
@@ -15,7 +15,7 @@ class SpriteBatchRenderer {
   static final defaultTransform = RSTransform(1, 0, 0, 0);
   static const defaultColor = const Color(0x00000000); // transparent
 
-  SpriteBatchRenderer(this.atlas);
+  SpriteBatch(this.atlas);
 
   void add(Sprite sprite) {
     final transform = RSTransform.fromComponents(

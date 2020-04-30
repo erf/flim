@@ -24,13 +24,13 @@ Add `Sprite` and `AnimatedSprite` in code or from json assets by calling
 Load (and cache) images by calling `Sprite.load` or `Assets.loadImage` 
 during `Game.initialize`.
 
-Render sprites using `SpriteBatchMapRenderer` (in most cases), and call it's 
+Render sprites using a `SpriteBatchMap` (in most cases), and call it's
 `render` method in `Game.render`.
 
 Call `AnimatedSprite.update` in `Game.update`, before adding its `sprite` to a 
 renderer.
 
-Remember to call `clear` on any renderer before adding sprites to it in the 
+Remember to call `clear` on `SpriteBatchMap` before adding sprites to it in the
 update method.
 
 A render loop takes care of updating your game objects at ~60 fps.

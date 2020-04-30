@@ -5,7 +5,7 @@ import 'package:flim/flim.dart';
 import 'package:flutter/services.dart';
 
 class MyKeyboardGame extends Game {
-  SpriteBatchMapRenderer spriteRenderer = SpriteBatchMapRenderer();
+  SpriteBatchMap spriteBatchMap = SpriteBatchMap();
   Sprite playerSprite;
   AnimatedSprite playerFireAnimation;
   AnimatedSprite boomAnimation;
@@ -92,18 +92,18 @@ class MyKeyboardGame extends Game {
   void updatePlayer(double dt) {
     playerSprite.transform.translate += vel * dt;
     vel *= 0.95;
-    spriteRenderer.clear();
+    spriteBatchMap.clear();
     if (fire) {
       playerFireAnimation.transform.translate = playerSprite.transform.translate;
       playerFireAnimation.update(dt);
-      spriteRenderer.add(playerFireAnimation.sprite);
+      spriteBatchMap.add(playerFireAnimation.sprite);
 
       boomAnimation.transform.translate = playerSprite.transform.translate;
       boomAnimation.transform.translate += dir * 100.0 + Offset(0, -32);
       boomAnimation.update(dt);
-      spriteRenderer.add(boomAnimation.sprite);
+      spriteBatchMap.add(boomAnimation.sprite);
     } else {
-      spriteRenderer.add(playerSprite);
+      spriteBatchMap.add(playerSprite);
     }
   }
 
@@ -116,6 +116,6 @@ class MyKeyboardGame extends Game {
 
   @override
   void paint(Canvas canvas, Size size) {
-    spriteRenderer.render(canvas, size);
+    spriteBatchMap.render(canvas, size);
   }
 }

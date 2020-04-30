@@ -4,12 +4,26 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import 'assets.dart';
-import 'frame.dart';
 import 'image_rect.dart';
 import 'sprite.dart';
 import 'int_rect.dart';
 import 'int_size.dart';
 import 'transform2d.dart';
+
+/// A single frame in an [AnimatedSprite]
+class Frame {
+  Sprite sprite;
+  double time;
+
+  Frame({this.sprite, this.time});
+
+  factory Frame.fromJson(json, {String image}) {
+    return Frame(
+      sprite: Sprite.fromJson(json['sprite'], image: image),
+      time: json['time'] == null ? 0.0 : (json['time'] as num).toDouble(),
+    );
+  }
+}
 
 /// An animated sprite - a list of [Frame]'s which changes over time
 class AnimatedSprite {
@@ -70,6 +84,27 @@ class AnimatedSprite {
     );
   }
 
+  /// find index for frame given time
+  int findIndex(double time) {
+    double sumTime = 0.0;
+    for (int i = 0; i < frames.length; i++) {
+      sumTime += frames[i].time;
+      if (time < sumTime) {
+        return i;
+      }
+    }
+    return frames.length - 1;
+  }
+
+  /// update time and find new frame index
+  void update(double dt) {
+    time += dt;
+    if (time > totalTime) {
+      time = time % totalTime;
+    }
+    index = findIndex(time);
+  }
+
   factory AnimatedSprite.fromUniformSpriteSheet(
     String image, {
     @required IntSize spriteSize, // the size of the sub-images inside the sprite sheet
@@ -105,26 +140,5 @@ class AnimatedSprite {
       transform: transform,
       frames: frames,
     );
-  }
-
-  /// find index for frame given time
-  int findIndex(double time) {
-    double sumTime = 0.0;
-    for (int i = 0; i < frames.length; i++) {
-      sumTime += frames[i].time;
-      if (time < sumTime) {
-        return i;
-      }
-    }
-    return frames.length - 1;
-  }
-
-  /// update time and find new frame index
-  void update(double dt) {
-    time += dt;
-    if (time > totalTime) {
-      time = time % totalTime;
-    }
-    index = findIndex(time);
   }
 }
