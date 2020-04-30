@@ -42,7 +42,6 @@ class GameRenderBox extends RenderBox with WidgetsBindingObserver {
 
   void update(double dt) {
     if (!attached) return;
-    //game.recordDt(dt);
     game.update(dt);
     markNeedsPaint();
   }

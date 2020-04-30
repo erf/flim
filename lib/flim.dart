@@ -5,7 +5,6 @@ export 'src/asset_cache.dart';
 export 'src/game.dart';
 export 'src/game_loop.dart';
 export 'src/game_widget.dart';
-export 'src/game_widget_embedded.dart';
 export 'src/image_rect.dart';
 export 'src/int_rect.dart';
 export 'src/int_size.dart';

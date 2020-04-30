@@ -1,34 +1,28 @@
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
-import 'game_widget_embedded.dart';
 import 'game.dart';
+import 'game_render_box.dart';
 
-/// Encapsulates widgets for keyboard input, gestures and a EmbeddedGameWidget
-class GameWidget extends StatelessWidget {
+/// This a widget to embed a [Game] inside the Widget tree
+class GameWidget extends LeafRenderObjectWidget {
   final Game game;
   final Size size;
 
   GameWidget(this.game, {this.size});
 
   @override
-  Widget build(BuildContext context) {
-    return OrientationBuilder(
-      builder: (context, orientation) {
-        return RawKeyboardListener(
-          focusNode: FocusNode(),
-          autofocus: true,
-          onKey: (rawKeyEvent) {
-            game.onKey(rawKeyEvent);
-          },
-          child: GestureDetector(
-            onTap: () {
-              game.onTap();
-            },
-            child: EmbeddedGameWidget(game, size: size),
-          ),
-        );
-      },
+  RenderBox createRenderObject(BuildContext context) {
+    return RenderConstrainedBox(
+      child: GameRenderBox(game),
+      additionalConstraints: BoxConstraints.expand(width: size?.width, height: size?.height),
     );
+  }
+
+  @override
+  void updateRenderObject(BuildContext context, RenderConstrainedBox renderBox) {
+    renderBox
+      ..child = GameRenderBox(game)
+      ..additionalConstraints = BoxConstraints.expand(width: size?.width, height: size?.height);
   }
 }

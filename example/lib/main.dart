@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flim/flim.dart';
 
+import 'my_game_widget.dart';
 import 'my_game.dart';
 import 'my_simple_game.dart';
 import 'my_keyboard_game.dart';
@@ -67,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
           future: MyKeyboardGame(MediaQuery.of(context).size).initialize(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return GameWidget(snapshot.data);
+              return MyGameWidget(snapshot.data);
             } else {
               return Container();
             }
@@ -94,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
       future: AnimatedSprite.loadJson('animation_two_images.json'),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return EmbeddedGameWidget(AnimatedSpriteGame(snapshot.data));
+          return GameWidget(AnimatedSpriteGame(snapshot.data));
         } else {
           return Container();
         }
@@ -190,7 +191,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ).load(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return EmbeddedGameWidget(AnimatedSpriteGame(snapshot.data));
+              return GameWidget(AnimatedSpriteGame(snapshot.data));
             } else {
               return Container();
             }

@@ -15,9 +15,5 @@ abstract class Game {
 
   void lifecycleStateChange(AppLifecycleState state) {}
 
-  void onKey(RawKeyEvent rawKeyEvent) {}
-
-  void onTap() {}
-
   void resize(Size size) {}
 }

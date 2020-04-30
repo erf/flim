@@ -70,7 +70,6 @@ class MyKeyboardGame extends Game {
   }
 
   Offset dir;
-
   void handleKeyboard(Map<String, bool> keysPressed) {
     dir = Offset(0, 0);
     if (isPressed('h', keysPressed)) {
