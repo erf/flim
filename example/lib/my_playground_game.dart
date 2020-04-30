@@ -5,7 +5,7 @@ import 'package:flim/flim.dart';
 
 import 'level.dart';
 
-class MyGame extends Game {
+class MyPlaygroundGame extends Game {
   SpriteBatchMap spriteRenderer = SpriteBatchMap();
   SpriteBatchMap spriteRendererLayer1 = SpriteBatchMap();
   SpriteBatchMap spriteRendererLayer2 = SpriteBatchMap();
@@ -14,7 +14,7 @@ class MyGame extends Game {
   AnimatedSprite rogueAnimation;
   AnimatedSprite jsonAnimation;
 
-  MyGame();
+  MyPlaygroundGame();
 
   @override
   Future<Game> initialize() async {

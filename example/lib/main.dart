@@ -152,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Stack(
       children: [
         FutureBuilder(
-          future: MyGame().initialize(),
+          future: MyPlaygroundGame().initialize(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return GameWidget(snapshot.data);
