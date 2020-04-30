@@ -29,7 +29,7 @@ class MyKeyboardGame extends Game {
       transform: Transform2(
         anchor: Offset(50, 50),
         scale: 3,
-        translate: Offset(100, 100),
+        translate: Offset(size.width / 2.0, size.height / 2.0),
       ),
     ).load();
 
@@ -49,7 +49,7 @@ class MyKeyboardGame extends Game {
       'boom3.png',
       spriteSize: IntSize(128, 128),
       atlasBounds: IntRect(0, 0, 8, 8),
-      frameDuration: 0.03,
+      frameDuration: 0.02,
       transform: Transform2(
         anchor: Offset(64, 64),
       ),
@@ -86,13 +86,14 @@ class MyKeyboardGame extends Game {
       dir += Offset(0, -1);
     }
 
-    bool firePressed = isPressed('f', keysPressed);
-    if (firePressed && !fire) {
+    bool fPressed = isPressed('f', keysPressed);
+    if (fPressed && !fire) {
       double dx = random.nextInt(size.width.toInt()).toDouble();
       double dy = random.nextInt(size.height.toInt()).toDouble();
       boomAnimation.transform.translate = Offset(dx, dy);
+      boomAnimation.reset();
     }
-    fire = firePressed;
+    fire = fPressed;
 
     if (dir != Offset.zero) {
       vel = (dir / dir.distance) * 300.0;

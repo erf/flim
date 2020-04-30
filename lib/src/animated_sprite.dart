@@ -101,6 +101,12 @@ class AnimatedSprite {
     index = findIndex(time);
   }
 
+  /// reset time and set index to 0
+  void reset() {
+    time = 0.0;
+    index = 0;
+  }
+
   /// helper for loading an animation from a uniform sprite sheet given size and bounds
   /// could add a per-frame-transform and duration
   factory AnimatedSprite.fromUniformSpriteSheet(
