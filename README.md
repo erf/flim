@@ -19,6 +19,9 @@ For a short introduction see [USAGE](USAGE.md),
 
 .. or check out the [example](example) folder.
 
+but the main idea is; get a bunch of data and render it really fast, 
+
+using a few pragmatic, loosely coupled abstractions.
 
 ## Notes
 
