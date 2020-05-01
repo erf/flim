@@ -19,7 +19,8 @@ class Frame {
   factory Frame.fromJson(json, {String image}) {
     return Frame(
       sprite: Sprite.fromJson(json['sprite'], image: image),
-      duration: json['duration'] == null ? 0.0 : (json['duration'] as num).toDouble(),
+      duration:
+          json['duration'] == null ? 0.0 : (json['duration'] as num).toDouble(),
     );
   }
 }
@@ -111,8 +112,12 @@ class AnimatedSprite {
   /// could add a per-frame-transform and duration
   factory AnimatedSprite.fromUniformSpriteSheet(
     String image, {
-    @required IntSize spriteSize, // the size of the sub-images inside the sprite sheet
-    @required IntRect atlasBounds, // the bounds of the num of sprites inside the sheet
+    @required
+        IntSize
+            spriteSize, // the size of the sub-images inside the sprite sheet
+    @required
+        IntRect
+            atlasBounds, // the bounds of the num of sprites inside the sheet
     @required double frameDuration,
     Color color = const Color(0x00000000),
     Transform2 transform,

@@ -123,7 +123,9 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 200,
               color: Colors.blueAccent,
               child: Center(
-                child: snapshot.hasData ? SpriteWidget(snapshot.data) : Container(),
+                child: snapshot.hasData
+                    ? SpriteWidget(snapshot.data)
+                    : Container(),
               ),
             );
           },

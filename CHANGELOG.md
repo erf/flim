@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [0.1.0]
+## [0.1.1]
 - initial release!
 - sprites and sprite animations
 - buffered sprite rendering using Canvas.drawAtlas

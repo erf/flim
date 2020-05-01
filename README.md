@@ -13,6 +13,8 @@ minimal data-driven sprite render lib for Flutter
 
 ## Usage
 
+See [example](example)
+
 Inherit from `Game` and override methods to `initialize`, `update` and `render`, 
 `Sprite`s and `AnimatedSprite`s, and respond to events.
 
@@ -36,10 +38,6 @@ To update animations call `AnimatedSprite.update` in `Game.update`. Then call
 A `RenderLoop` in `GameRenderBox` updates your game at ~60 fps, and gives you 
 delta time (dt) since previous update.
 
-See [example](example) folder for examples.
-
 ## Notes
-
-Format code using `flutter format -l 100 .`
 
 Inspired by [Flame](https://github.com/flame-engine/flame)

@@ -41,21 +41,24 @@ class AssetCache<T> extends GenericCache<T> {
 
 /// asset caches for images
 class ImageAssets extends AssetCache<Image> {
-  ImageAssets._privateConstructor() : super((data) => decodeImageFromList(data));
+  ImageAssets._privateConstructor()
+      : super((data) => decodeImageFromList(data));
 
   static final ImageAssets instance = ImageAssets._privateConstructor();
 }
 
 /// asset caches for strings
 class StringAssets extends AssetCache<String> {
-  StringAssets._privateConstructor() : super((data) => Future.value(utf8.decode(data)));
+  StringAssets._privateConstructor()
+      : super((data) => Future.value(utf8.decode(data)));
 
   static final StringAssets instance = StringAssets._privateConstructor();
 }
 
 /// asset caches for json files
 class JsonAssets extends AssetCache<Map<String, dynamic>> {
-  JsonAssets._privateConstructor() : super((data) => Future.value(jsonDecode(utf8.decode(data))));
+  JsonAssets._privateConstructor()
+      : super((data) => Future.value(jsonDecode(utf8.decode(data))));
 
   static final JsonAssets instance = JsonAssets._privateConstructor();
 }
