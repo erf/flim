@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [0.2.2]
+- update README 
+
+## [0.2.1]
+- update README
+
 ## [0.2.0]
 - rename sprite load to loadImage
 - update docs
