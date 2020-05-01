@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## [0.2.3]
+- update README 
+
 ## [0.2.2]
 - update README 
 
