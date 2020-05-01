@@ -31,7 +31,7 @@ class MyKeyboardGame extends Game {
         scale: 3,
         translate: Offset(size.width / 2.0, size.height / 2.0),
       ),
-    ).load();
+    ).loadImage();
 
     playerFireAnimation = await AnimatedSprite.fromUniformSpriteSheet(
       'rogue.png',
@@ -43,7 +43,7 @@ class MyKeyboardGame extends Game {
         anchor: Offset(50, 50),
         scale: 3.0,
       ),
-    ).load();
+    ).loadImages();
 
     boomAnimation = await AnimatedSprite.fromUniformSpriteSheet(
       'boom3.png',
@@ -53,7 +53,7 @@ class MyKeyboardGame extends Game {
       transform: Transform2(
         anchor: Offset(64, 64),
       ),
-    ).load();
+    ).loadImages();
 
     return this;
   }

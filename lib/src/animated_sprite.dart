@@ -19,15 +19,15 @@ class Frame {
   factory Frame.fromJson(json, {String image}) {
     return Frame(
       sprite: Sprite.fromJson(json['sprite'], image: image),
-      duration:
-          json['duration'] == null ? 0.0 : (json['duration'] as num).toDouble(),
+      duration: json['duration'] == null ? 0.0 : (json['duration'] as num).toDouble(),
     );
   }
 }
 
 /// An animated sprite - a list of [Frame]'s which changes over time
 class AnimatedSprite {
-  final String image; // set if all frames use same image
+  /// set if all frames use same image
+  final String image;
   Transform2 transform;
   final List<Frame> frames;
   int index;
@@ -56,16 +56,15 @@ class AnimatedSprite {
   }
 
   /// load all images in frames
-  Future<AnimatedSprite> load() async {
-    await Future.wait(frames.map((e) => e.sprite.load()));
+  Future<AnimatedSprite> loadImages() async {
+    await Future.wait(frames.map((e) => e.sprite.loadImage()));
     return this;
   }
 
   /// load animation from json asset and load frame images
   static Future<AnimatedSprite> loadJson(String name) async {
     final jsonAsset = await JsonAssets.instance.load(name);
-    final animatedSprite = await AnimatedSprite.fromJson(jsonAsset).load();
-    return animatedSprite;
+    return await AnimatedSprite.fromJson(jsonAsset).loadImages();
   }
 
   /// parse animation json
@@ -108,16 +107,19 @@ class AnimatedSprite {
     index = 0;
   }
 
-  /// helper for loading an animation from a uniform sprite sheet given size and bounds
-  /// could add a per-frame-transform and duration
+  /// Load an animation from a uniform sprite sheet given size and bounds
+  ///
+  /// [image] the image name
+  /// [spriteSize] the size of the sub-images inside the sprite sheet
+  /// [atlasBounds] the bounds of the num of sprites inside the sheet
+  /// [frameDuration] the duration per frame
+  /// [color] an  optional color per frame
+  /// [transform] the animation transform
+  /// ..could add per-frame-transform and duration
   factory AnimatedSprite.fromUniformSpriteSheet(
     String image, {
-    @required
-        IntSize
-            spriteSize, // the size of the sub-images inside the sprite sheet
-    @required
-        IntRect
-            atlasBounds, // the bounds of the num of sprites inside the sheet
+    @required IntSize spriteSize,
+    @required IntRect atlasBounds,
     @required double frameDuration,
     Color color = const Color(0x00000000),
     Transform2 transform,

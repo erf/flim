@@ -29,7 +29,7 @@ class MyBenchmarkGame extends Game {
           scale: 1,
           anchor: Offset(64, 64),
         ),
-      ).load();
+      ).loadImage();
       spriteTasks.add(spriteFuture);
     }
     final List<Sprite> sprites = await Future.wait(spriteTasks);

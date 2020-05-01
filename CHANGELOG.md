@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## NEXT
+- rename sprite load to loadImage
+
 ## [0.1.1]
 - initial release!
 - sprites and sprite animations

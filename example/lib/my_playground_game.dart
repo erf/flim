@@ -22,8 +22,8 @@ class MyPlaygroundGame extends Game {
     level = Level.fromJson(await JsonAssets.instance.load('level.json'));
 
     // load and cache sprite images
-    await Future.wait(level.sprites.map((sprite) => sprite.load()));
-    await Future.wait(level.animations.map((sprite) => sprite.load()));
+    await Future.wait(level.sprites.map((sprite) => sprite.loadImage()));
+    await Future.wait(level.animations.map((sprite) => sprite.loadImages()));
 
     // create a uniform sprite sheet
     rogueAnimation = await AnimatedSprite.fromUniformSpriteSheet(
@@ -36,17 +36,17 @@ class MyPlaygroundGame extends Game {
         anchor: Offset(50, 50),
         scale: 3.0,
       ),
-    ).load();
+    ).loadImages();
 
     final angel = await Sprite(
       imageRect: ImageRect(image: 'AngelBrown.PNG'),
       transform: Transform2(translate: Offset(260, 300), scale: 3),
-    ).load();
+    ).loadImage();
 
     final rogue2 = await Sprite(
       imageRect: ImageRect(image: 'rogue.png', rect: IntRect(0, 0, 100, 100)),
       transform: Transform2(translate: Offset(155, 300), scale: 3),
-    ).load();
+    ).loadImage();
 
     spriteRendererLayer1.add(angel);
     spriteRendererLayer2.add(rogue2);

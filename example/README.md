@@ -1,3 +1,3 @@
 # example
 
-flim examples
+a few *flim* examples

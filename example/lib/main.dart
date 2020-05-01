@@ -116,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
             transform: Transform2(
               anchor: Offset(64.0, 64.0),
             ),
-          ).load(),
+          ).loadImage(),
           builder: (context, snapshot) {
             return Container(
               width: 300,
@@ -171,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
               scale: 2.0,
               rotation: 3.14 / 4.0,
             ),
-          ).load(),
+          ).loadImage(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return SpriteWidget(snapshot.data);
@@ -190,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
             transform: Transform2(
               translate: Offset(0.0, 128 * 2.0),
             ),
-          ).load(),
+          ).loadImages(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return GameWidget(AnimatedSpriteGame(snapshot.data));

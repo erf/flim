@@ -18,7 +18,7 @@ class MySimpleGame extends Game {
         scale: 3,
         anchor: Offset(50, 50),
       ),
-    ).load();
+    ).loadImage();
 
     spriteBatchMap.add(rogue);
 

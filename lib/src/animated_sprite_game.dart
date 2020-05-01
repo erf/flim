@@ -15,7 +15,7 @@ class AnimatedSpriteGame extends Game {
 
   @override
   Future<AnimatedSpriteGame> initialize() async {
-    await animatedSprite.load();
+    await animatedSprite.loadImages();
     return this;
   }
 
