@@ -19,7 +19,8 @@ class Frame {
   factory Frame.fromJson(json, {String image}) {
     return Frame(
       sprite: Sprite.fromJson(json['sprite'], image: image),
-      duration: json['duration'] == null ? 0.0 : (json['duration'] as num).toDouble(),
+      duration:
+          json['duration'] == null ? 0.0 : (json['duration'] as num).toDouble(),
     );
   }
 }
