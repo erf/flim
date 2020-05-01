@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## NEXT
+## [0.2.0]
 - rename sprite load to loadImage
+- update docs
 
 ## [0.1.1]
 - initial release!
