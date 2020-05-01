@@ -33,7 +33,8 @@ delta time since previous update.
 Initialize your sprite objects in `Game.initialize`, and return the `Game` as
 a future. 
 
-We have helper methods for loading images and json files using a generic `AssetCache`.
+`AssetCache`, or one of its sub-classes, is used for loading and caching images, 
+json files and more.
 
 Load (and cache) `Sprite` and `AnimatedSprite` (or other objects) from json assets 
 by calling `Sprite.loadJson`, `AnimatedSprite.loadJson` or `JsonAssets.instance.load`.
@@ -52,12 +53,12 @@ Update animations using `AnimatedSprite.update` in `Game.update`. Then call
 
 ## Notes
 
-I'd like to keep this minimal with focus on fast rendering of sprites, so i won't 
-be adding a bunch of "game" features. 
+I'd like to keep this minimal, with focus on fast sprite rendering, so i won't 
+be adding a lot of "game" features.
 
-And API will likely break (as i like to experiment and optimize).
+APIs will likely break (as i like to experiment).
 
-But code and doc improvements are welcome (keep it polite and no demands).
+Code and doc improvements are welcome :)
 
 Inspired by [Flame](https://github.com/flame-engine/flame)
 
