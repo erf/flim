@@ -55,18 +55,6 @@ class AnimatedSprite {
     );
   }
 
-  /// load all images in frames
-  Future<AnimatedSprite> loadImages() async {
-    await Future.wait(frames.map((e) => e.sprite.loadImage()));
-    return this;
-  }
-
-  /// load animation from json asset and load frame images
-  static Future<AnimatedSprite> loadJson(String name) async {
-    final jsonAsset = await JsonAssets.instance.load(name);
-    return await AnimatedSprite.fromJson(jsonAsset).loadImages();
-  }
-
   /// parse animation json
   factory AnimatedSprite.fromJson(Map<String, dynamic> json) {
     return AnimatedSprite(
@@ -78,6 +66,18 @@ class AnimatedSprite {
       index: json['index'] == null ? 0 : json['index'] as int,
       time: json['time'] == null ? 0.0 : (json['time'] as num).toDouble(),
     );
+  }
+
+  /// load all images in frames
+  Future<AnimatedSprite> loadImages() async {
+    await Future.wait(frames.map((e) => e.sprite.loadImage()));
+    return this;
+  }
+
+  /// load animation from json asset and load frame images
+  static Future<AnimatedSprite> loadJson(String name) async {
+    final jsonAsset = await JsonAssets.instance.load(name);
+    return await AnimatedSprite.fromJson(jsonAsset).loadImages();
   }
 
   /// find index for frame given time
@@ -115,7 +115,8 @@ class AnimatedSprite {
   /// [frameDuration] the duration per frame
   /// [color] an  optional color per frame
   /// [transform] the animation transform
-  /// ..could add per-frame-transform and duration
+  /// .. could add per-frame-transform and duration
+  /// .. move outside class/file?
   factory AnimatedSprite.fromUniformSpriteSheet(
     String image, {
     @required IntSize spriteSize,

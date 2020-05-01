@@ -13,6 +13,13 @@ class Sprite {
 
   Sprite({this.image, this.imageRect, this.transform});
 
+  factory Sprite.fromJson(Map<String, dynamic> json, {String image}) {
+    return Sprite(
+      imageRect: ImageRect.fromJson(json['imageRect'], image: image),
+      transform: Transform2.fromJson(json['transform']),
+    );
+  }
+
   Future<Sprite> loadImage() async {
     image = await ImageAssets.instance.load(imageRect.image);
     if (imageRect.rect == null) {
@@ -24,12 +31,5 @@ class Sprite {
   static Future<Sprite> loadJson(String name) async {
     final jsonSprite = await JsonAssets.instance.load(name);
     return await Sprite.fromJson(jsonSprite).loadImage();
-  }
-
-  factory Sprite.fromJson(Map<String, dynamic> json, {String image}) {
-    return Sprite(
-      imageRect: ImageRect.fromJson(json['imageRect'], image: image),
-      transform: Transform2.fromJson(json['transform']),
-    );
   }
 }
