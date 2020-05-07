@@ -13,23 +13,24 @@ minimal data-driven sprite render lib for Flutter
 
 ## Usage
 
-Add [flim](https://pub.dev/packages/flim) as a dependency in your `pubspec.yaml`.
+Add `flim` to your `pubspec.yaml`:
 
-For a short introduction see [USAGE](USAGE.md),
+```yaml
+dependencies:
+  flim:
+```
 
-.. or check out the [example](example) folder.
+See [USAGE.md](USAGE.md) and the [example](example) folder to learn.
 
-but the main idea is; get a bunch of data and render it really fast, 
-
-using a few pragmatic, loosely coupled abstractions.
+Use `dartdoc` or `scripts/docs.sh` to generate docs.
 
 ## Notes
 
-I'd like to keep **flim** minimal, so i won't be adding lots of "game" features.
+I'd like to keep **flim** minimal, so i won't be adding lots of *game* features.
 
 Code is expected to break (as i like to experiment).
 
-Code and doc improvements are welcome :-)
+Code and doc improvements are welcome.
 
 Inspired by [Flame](https://github.com/flame-engine/flame)
 
