@@ -20,7 +20,7 @@ dependencies:
   flim:
 ```
 
-See [USAGE.md](USAGE.md) and the [example](example) folder to learn.
+See [USAGE.md](USAGE.md) and [example](example) to learn.
 
 Use `dartdoc` or `scripts/docs.sh` to generate docs.
 
