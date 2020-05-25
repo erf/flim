@@ -1,6 +1,6 @@
 name: flim
-description: minimal data-driven sprite render and animation lib for Flutter
-version: 0.3.0
+description: Minimal data-driven sprite render and animation lib for Flutter.
+version: 0.3.1
 homepage: https://github.com/erf/flim
 
 environment:

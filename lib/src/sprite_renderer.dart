@@ -16,7 +16,8 @@ class SpriteRenderer {
     Rect src = sprite.rect.asRect;
     Rect dst = Rect.fromLTWH(0, 0, src.width, src.height);
     canvas.save();
-    canvas.translate(sprite.transform.translate.dx, sprite.transform.translate.dy);
+    canvas.translate(
+        sprite.transform.translate.dx, sprite.transform.translate.dy);
     canvas.rotate(sprite.transform.rotation);
     canvas.scale(sprite.transform.scale);
     canvas.translate(-sprite.transform.anchor.dx, -sprite.transform.anchor.dy);

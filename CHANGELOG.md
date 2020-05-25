@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [0.3.1]
+- format code
+- minor json load improvement
+- update README
+
 ## [0.3.0]
 - refactor and simplify Sprite (and json format) by removing ImageRect
 - rename Transform2 -> Transform2D

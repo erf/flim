@@ -70,7 +70,6 @@ class MyPlaygroundGame extends Game {
 
   @override
   void render(Canvas canvas) {
-
     spriteRenderer.clear();
 
     spriteRenderer.addAll(level.sprites);

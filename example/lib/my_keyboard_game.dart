@@ -63,7 +63,8 @@ class MyKeyboardGame extends Game {
   void onKey(RawKeyEvent rawKeyEvent) {
     //debugPrint(rawKeyEvent.logicalKey.keyLabel);
     //debugPrint(rawKeyEvent.runtimeType.toString());
-    keysPressed[rawKeyEvent.logicalKey.keyLabel] = rawKeyEvent is RawKeyDownEvent;
+    keysPressed[rawKeyEvent.logicalKey.keyLabel] =
+        rawKeyEvent is RawKeyDownEvent;
     //debugPrint(keysPressed.toString());
   }
 
@@ -103,7 +104,8 @@ class MyKeyboardGame extends Game {
     vel *= 0.95;
     spriteBatchMap.clear();
     if (fire) {
-      playerFireAnimation.transform.translate = playerSprite.transform.translate;
+      playerFireAnimation.transform.translate =
+          playerSprite.transform.translate;
       playerFireAnimation.update(dt);
       spriteBatchMap.add(playerFireAnimation.sprite);
 

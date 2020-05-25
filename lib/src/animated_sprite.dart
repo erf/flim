@@ -16,9 +16,10 @@ class Frame {
   Frame({this.sprite, this.duration});
 
   factory Frame.fromJson(json, {String imagePath}) {
+    final duration = json['duration'];
     return Frame(
       sprite: Sprite.fromJson(json['sprite'], imagePath: imagePath),
-      duration: json['duration'] == null ? 0.0 : (json['duration'] as num).toDouble(),
+      duration: duration == null ? 0.0 : (duration as num).toDouble(),
     );
   }
 }
@@ -57,14 +58,17 @@ class AnimatedSprite {
 
   /// parse animation json
   factory AnimatedSprite.fromJson(Map<String, dynamic> json) {
+    final index = json['index'];
+    final time = json['time'];
     return AnimatedSprite(
       imagePath: json['imagePath'],
       transform: Transform2D.fromJson(json['transform']),
       frames: json['frames']
-          .map<Frame>((frameJson) => Frame.fromJson(frameJson, imagePath: json['imagePath']))
+          .map<Frame>(
+              (frame) => Frame.fromJson(frame, imagePath: json['imagePath']))
           .toList(),
-      index: json['index'] == null ? 0 : json['index'] as int,
-      time: json['time'] == null ? 0.0 : (json['time'] as num).toDouble(),
+      index: index == null ? 0 : index as int,
+      time: time == null ? 0.0 : (time as num).toDouble(),
     );
   }
 
@@ -132,7 +136,8 @@ class AnimatedSprite {
           Frame(
             duration: frameDuration,
             sprite: Sprite(
-              transform: Transform2D(), // TODO i dont want to set this, null should be ok
+              // TODO i don't want to set this, null should be ok
+              transform: Transform2D(),
               imagePath: imagePath,
               color: color,
               rect: IntRect(
