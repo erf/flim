@@ -6,10 +6,8 @@
   "frames": [ {
     "duration": 1.0,
     "sprite": {
-        "imageRect": {
-          "image": "boom3.png",
-          "rect": [ 512, 512, 128, 128 ]
-        },
+        "imagePath": "boom3.png",
+        "rect": [ 512, 512, 128, 128 ],
         "transform": {
           "anchor": [64, 64],
           "translate": [100, 100]
@@ -18,10 +16,8 @@
     }, {
     "duration": 1.0,
       "sprite": {
-        "imageRect": {
-          "image": "rogue.png",
-          "rect": [ 0, 0, 100, 100 ]
-        },
+        "imagePath": "rogue.png",
+        "rect": [ 0, 0, 100, 100 ],
         "transform": {
           "anchor": [50, 50],
           "scale": 2.0,

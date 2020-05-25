@@ -1,8 +1,6 @@
 {
-  "imageRect": {
-    "image": "boom3.png",
-    "rect": [ 512, 512, 128, 128 ]
-  },
+  "imagePath": "boom3.png",
+  "rect": [ 512, 512, 128, 128 ],
   "transform": {
     "translate": [ 200, 200 ],
     "scale": 2.0,

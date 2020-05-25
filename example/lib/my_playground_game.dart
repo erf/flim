@@ -9,7 +9,6 @@ class MyPlaygroundGame extends Game {
   SpriteBatchMap spriteRenderer = SpriteBatchMap();
   SpriteBatchMap spriteRendererLayer1 = SpriteBatchMap();
   SpriteBatchMap spriteRendererLayer2 = SpriteBatchMap();
-  SpriteBatchMap spriteRendererBenchmark = SpriteBatchMap();
   Level level;
   AnimatedSprite rogueAnimation;
   AnimatedSprite jsonAnimation;
@@ -27,11 +26,11 @@ class MyPlaygroundGame extends Game {
 
     // create a uniform sprite sheet
     rogueAnimation = await AnimatedSprite.fromUniformSpriteSheet(
-      'rogue.png',
+      imagePath: 'rogue.png',
       spriteSize: IntSize(100, 100),
       atlasBounds: IntRect(0, 0, 10, 1),
       frameDuration: 0.08,
-      transform: Transform2(
+      transform: Transform2D(
         translate: Offset(128 * 1.0, 450),
         anchor: Offset(50, 50),
         scale: 3.0,
@@ -39,13 +38,14 @@ class MyPlaygroundGame extends Game {
     ).loadImages();
 
     final angel = await Sprite(
-      imageRect: ImageRect(image: 'AngelBrown.PNG'),
-      transform: Transform2(translate: Offset(260, 300), scale: 3),
+      imagePath: 'AngelBrown.PNG',
+      transform: Transform2D(translate: Offset(260, 300), scale: 3),
     ).loadImage();
 
     final rogue2 = await Sprite(
-      imageRect: ImageRect(image: 'rogue.png', rect: IntRect(0, 0, 100, 100)),
-      transform: Transform2(translate: Offset(155, 300), scale: 3),
+      imagePath: 'rogue.png',
+      rect: IntRect(0, 0, 100, 100),
+      transform: Transform2D(translate: Offset(155, 300), scale: 3),
     ).loadImage();
 
     spriteRendererLayer1.add(angel);
@@ -63,16 +63,13 @@ class MyPlaygroundGame extends Game {
   void update(double dt) {
     super.update(dt);
 
-    level.animations.forEach((animation) {
-      animation.update(dt);
-    });
+    level.animations.forEach((animation) => animation.update(dt));
     rogueAnimation.update(dt);
     jsonAnimation.update(dt);
   }
 
   @override
   void render(Canvas canvas) {
-    spriteRendererBenchmark.render(canvas);
 
     spriteRenderer.clear();
 

@@ -9,11 +9,9 @@ class MySimpleGame extends Game {
   @override
   Future<Game> initialize() async {
     final rogue = await Sprite(
-      imageRect: ImageRect(
-        image: 'rogue.png',
-        rect: IntRect(0, 0, 100, 100),
-      ),
-      transform: Transform2(
+      imagePath: 'rogue.png',
+      rect: IntRect(0, 0, 100, 100),
+      transform: Transform2D(
         translate: Offset(100, 100),
         scale: 3,
         anchor: Offset(50, 50),

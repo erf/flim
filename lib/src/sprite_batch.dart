@@ -18,9 +18,9 @@ class SpriteBatch {
   SpriteBatch(this.atlas);
 
   void add(Sprite sprite) {
-    rects.add(sprite.imageRect.rect.asRect);
-    transforms.add(sprite.transform.asRsTransform ?? defaultTransform);
-    colors.add(sprite.imageRect.color ?? defaultColor);
+    rects.add(sprite.rect.asRect);
+    transforms.add(sprite.transform?.asRsTransform ?? defaultTransform);
+    colors.add(sprite.color ?? defaultColor);
   }
 
   void clear() {

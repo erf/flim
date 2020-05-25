@@ -18,9 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'flim demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         appBarTheme: AppBarTheme(
           elevation: 0,
@@ -42,9 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('flim demo'),
+        title: Text('flim example'),
       ),
-      body: buildKeyboardGame(),
+      body: buildGameAndWidgets(),
     );
   }
 
@@ -108,12 +106,10 @@ class _MyHomePageState extends State<MyHomePage> {
       children: [
         FutureBuilder(
           future: Sprite(
-            imageRect: ImageRect(
-              image: 'boom3.PNG',
-              rect: IntRect(512, 512, 128, 128),
-              color: Colors.yellowAccent,
-            ),
-            transform: Transform2(
+            imagePath: 'boom3.PNG',
+            rect: IntRect(512, 512, 128, 128),
+            color: Colors.yellowAccent,
+            transform: Transform2D(
               anchor: Offset(64.0, 64.0),
             ),
           ).loadImage(),
@@ -123,9 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 200,
               color: Colors.blueAccent,
               child: Center(
-                child: snapshot.hasData
-                    ? SpriteWidget(snapshot.data)
-                    : Container(),
+                child: snapshot.hasData ? SpriteWidget(snapshot.data) : Container(),
               ),
             );
           },
@@ -165,8 +159,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         FutureBuilder(
           future: Sprite(
-            imageRect: ImageRect(image: 'AngelBrown.PNG'),
-            transform: Transform2(
+            imagePath: 'AngelBrown.PNG',
+            transform: Transform2D(
               translate: Offset(100, 200),
               scale: 2.0,
               rotation: 3.14 / 4.0,
@@ -182,12 +176,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         FutureBuilder(
           future: AnimatedSprite.fromUniformSpriteSheet(
-            'boom3.png',
+            imagePath: 'boom3.png',
             spriteSize: IntSize(128, 128),
             atlasBounds: IntRect(0, 0, 8, 8),
             frameDuration: 0.03,
             color: Colors.transparent,
-            transform: Transform2(
+            transform: Transform2D(
               translate: Offset(0.0, 128 * 2.0),
             ),
           ).loadImages(),

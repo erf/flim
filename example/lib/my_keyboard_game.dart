@@ -22,11 +22,9 @@ class MyKeyboardGame extends Game {
   @override
   Future<Game> initialize() async {
     playerSprite = await Sprite(
-      imageRect: ImageRect(
-        image: 'rogue.png',
-        rect: IntRect(0, 0, 100, 100),
-      ),
-      transform: Transform2(
+      imagePath: 'rogue.png',
+      rect: IntRect(0, 0, 100, 100),
+      transform: Transform2D(
         anchor: Offset(50, 50),
         scale: 3,
         translate: Offset(size.width / 2.0, size.height / 2.0),
@@ -34,23 +32,23 @@ class MyKeyboardGame extends Game {
     ).loadImage();
 
     playerFireAnimation = await AnimatedSprite.fromUniformSpriteSheet(
-      'rogue.png',
+      imagePath: 'rogue.png',
       spriteSize: IntSize(100, 100),
       atlasBounds: IntRect(0, 0, 10, 1),
       frameDuration: 0.08,
       color: Colors.yellow,
-      transform: Transform2(
+      transform: Transform2D(
         anchor: Offset(50, 50),
         scale: 3.0,
       ),
     ).loadImages();
 
     boomAnimation = await AnimatedSprite.fromUniformSpriteSheet(
-      'boom3.png',
+      imagePath: 'boom3.png',
       spriteSize: IntSize(128, 128),
       atlasBounds: IntRect(0, 0, 8, 8),
       frameDuration: 0.02,
-      transform: Transform2(
+      transform: Transform2D(
         anchor: Offset(64, 64),
       ),
     ).loadImages();
@@ -65,8 +63,7 @@ class MyKeyboardGame extends Game {
   void onKey(RawKeyEvent rawKeyEvent) {
     //debugPrint(rawKeyEvent.logicalKey.keyLabel);
     //debugPrint(rawKeyEvent.runtimeType.toString());
-    keysPressed[rawKeyEvent.logicalKey.keyLabel] =
-        rawKeyEvent is RawKeyDownEvent;
+    keysPressed[rawKeyEvent.logicalKey.keyLabel] = rawKeyEvent is RawKeyDownEvent;
     //debugPrint(keysPressed.toString());
   }
 
@@ -106,8 +103,7 @@ class MyKeyboardGame extends Game {
     vel *= 0.95;
     spriteBatchMap.clear();
     if (fire) {
-      playerFireAnimation.transform.translate =
-          playerSprite.transform.translate;
+      playerFireAnimation.transform.translate = playerSprite.transform.translate;
       playerFireAnimation.update(dt);
       spriteBatchMap.add(playerFireAnimation.sprite);
 

@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 
 import 'asset_cache.dart';
-import 'image_rect.dart';
 import 'sprite.dart';
 import 'int_rect.dart';
 import 'int_size.dart';
@@ -16,11 +15,10 @@ class Frame {
 
   Frame({this.sprite, this.duration});
 
-  factory Frame.fromJson(json, {String image}) {
+  factory Frame.fromJson(json, {String imagePath}) {
     return Frame(
-      sprite: Sprite.fromJson(json['sprite'], image: image),
-      duration:
-          json['duration'] == null ? 0.0 : (json['duration'] as num).toDouble(),
+      sprite: Sprite.fromJson(json['sprite'], imagePath: imagePath),
+      duration: json['duration'] == null ? 0.0 : (json['duration'] as num).toDouble(),
     );
   }
 }
@@ -28,15 +26,15 @@ class Frame {
 /// An animated sprite - a list of [Frame]'s which changes over time
 class AnimatedSprite {
   /// set if all frames use same image
-  final String image;
-  Transform2 transform;
+  final String imagePath;
+  Transform2D transform;
   final List<Frame> frames;
   int index;
   double time;
   final double totalTime;
 
   AnimatedSprite({
-    this.image,
+    this.imagePath,
     this.transform,
     this.frames = const [],
     this.index = 0,
@@ -51,7 +49,8 @@ class AnimatedSprite {
     final s = currentFrame.sprite;
     return Sprite(
       image: s.image,
-      imageRect: s.imageRect,
+      imagePath: s.imagePath,
+      rect: s.rect,
       transform: transform + s.transform,
     );
   }
@@ -59,11 +58,11 @@ class AnimatedSprite {
   /// parse animation json
   factory AnimatedSprite.fromJson(Map<String, dynamic> json) {
     return AnimatedSprite(
-      image: json['image'],
-      transform: Transform2.fromJson(json['transform']),
-      frames: json['frames'].map<Frame>((frameJson) {
-        return Frame.fromJson(frameJson, image: json['image']);
-      }).toList(),
+      imagePath: json['imagePath'],
+      transform: Transform2D.fromJson(json['transform']),
+      frames: json['frames']
+          .map<Frame>((frameJson) => Frame.fromJson(frameJson, imagePath: json['imagePath']))
+          .toList(),
       index: json['index'] == null ? 0 : json['index'] as int,
       time: json['time'] == null ? 0.0 : (json['time'] as num).toDouble(),
     );
@@ -71,7 +70,7 @@ class AnimatedSprite {
 
   /// load all images in frames
   Future<AnimatedSprite> loadImages() async {
-    await Future.wait(frames.map((e) => e.sprite.loadImage()));
+    await Future.wait(frames.map((frame) => frame.sprite.loadImage()));
     return this;
   }
 
@@ -118,13 +117,13 @@ class AnimatedSprite {
   /// [transform] the animation transform
   /// .. could add per-frame-transform and duration
   /// .. move outside class/file?
-  factory AnimatedSprite.fromUniformSpriteSheet(
-    String image, {
+  factory AnimatedSprite.fromUniformSpriteSheet({
+    @required String imagePath,
     @required IntSize spriteSize,
     @required IntRect atlasBounds,
     @required double frameDuration,
     Color color = const Color(0x00000000),
-    Transform2 transform,
+    Transform2D transform,
   }) {
     List<Frame> frames = [];
     for (int row = atlasBounds.top; row < atlasBounds.height; row++) {
@@ -133,16 +132,14 @@ class AnimatedSprite {
           Frame(
             duration: frameDuration,
             sprite: Sprite(
-              transform: Transform2(),
-              imageRect: ImageRect(
-                image: image,
-                color: color,
-                rect: IntRect(
-                  col * spriteSize.width,
-                  row * spriteSize.height,
-                  spriteSize.width,
-                  spriteSize.height,
-                ),
+              transform: Transform2D(), // TODO i dont want to set this, null should be ok
+              imagePath: imagePath,
+              color: color,
+              rect: IntRect(
+                col * spriteSize.width,
+                row * spriteSize.height,
+                spriteSize.width,
+                spriteSize.height,
               ),
             ),
           ),
@@ -150,6 +147,7 @@ class AnimatedSprite {
       }
     }
     return AnimatedSprite(
+      imagePath: imagePath,
       transform: transform,
       frames: frames,
     );

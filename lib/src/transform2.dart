@@ -1,28 +1,28 @@
 import 'dart:ui';
 
 /// transforms used by sprites
-class Transform2 {
+class Transform2D {
   Offset translate;
   double scale;
   double rotation;
   Offset anchor;
 
-  Transform2({
+  Transform2D({
     this.translate = Offset.zero,
     this.scale = 1.0,
     this.rotation = 0.0,
     this.anchor = Offset.zero,
   });
 
-  factory Transform2.fromJson(json) {
+  factory Transform2D.fromJson(json) {
     if (json == null) {
-      return Transform2();
+      return Transform2D();
     }
     final translate = json['translate'];
     final rotation = json['rotation'];
     final scale = json['scale'];
     final anchor = json['anchor'];
-    return Transform2(
+    return Transform2D(
       translate: translate == null
           ? Offset.zero
           : Offset(
@@ -41,8 +41,8 @@ class Transform2 {
   }
 
   /// used by [AnimatedSprite] to combine the transform of itself and a [Frame]
-  Transform2 operator +(Transform2 arg) {
-    return Transform2(
+  Transform2D operator +(Transform2D arg) {
+    return Transform2D(
       translate: translate + arg.translate,
       rotation: rotation + arg.rotation,
       scale: scale * arg.scale,

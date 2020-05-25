@@ -1,16 +1,12 @@
 # CHANGELOG
 
+## [0.3.0]
+- refactor and simplify Sprite (and json format) by removing ImageRect
+- rename Transform2 -> Transform2D
+- more lambdas
+
 ## [0.2.4]
 - update README 
-
-## [0.2.3]
-- update README 
-
-## [0.2.2]
-- update README 
-
-## [0.2.1]
-- update README
 
 ## [0.2.0]
 - rename sprite load to loadImage

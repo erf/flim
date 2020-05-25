@@ -16,5 +16,9 @@ class IntRect {
         height = rect[3];
 
   Rect get asRect => Rect.fromLTWH(
-      left.toDouble(), top.toDouble(), width.toDouble(), height.toDouble());
+        left.toDouble(),
+        top.toDouble(),
+        width.toDouble(),
+        height.toDouble(),
+      );
 }

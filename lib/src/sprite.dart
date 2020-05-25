@@ -1,29 +1,32 @@
-import 'dart:ui' as ui;
+import 'dart:ui';
 
-import 'image_rect.dart';
 import 'int_rect.dart';
 import 'transform2.dart';
 import 'asset_cache.dart';
 
 /// an image rect with transformations
 class Sprite {
-  ui.Image image;
-  ImageRect imageRect;
-  Transform2 transform;
+  Image image;
+  String imagePath;
+  IntRect rect;
+  Color color = Color(0x00000000);
+  Transform2D transform;
 
-  Sprite({this.image, this.imageRect, this.transform});
+  Sprite({this.image, this.imagePath, this.rect, this.color, this.transform});
 
-  factory Sprite.fromJson(Map<String, dynamic> json, {String image}) {
+  factory Sprite.fromJson(Map<String, dynamic> json, {String imagePath}) {
+    final rect = json['rect'];
     return Sprite(
-      imageRect: ImageRect.fromJson(json['imageRect'], image: image),
-      transform: Transform2.fromJson(json['transform']),
+      imagePath: json['imagePath'] ?? imagePath,
+      rect: rect == null ? null : IntRect.fromList(rect),
+      transform: Transform2D.fromJson(json['transform']),
     );
   }
 
   Future<Sprite> loadImage() async {
-    image = await ImageAssets.instance.load(imageRect.image);
-    if (imageRect.rect == null) {
-      imageRect.rect = IntRect(0, 0, image.width, image.height);
+    image = await ImageAssets.instance.load(imagePath);
+    if (rect == null) {
+      rect = IntRect(0, 0, image.width, image.height);
     }
     return this;
   }
