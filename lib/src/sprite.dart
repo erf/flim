@@ -13,7 +13,13 @@ class Sprite {
   Color color = Color(0x00000000);
   Transform2D transform;
 
-  Sprite({this.image, this.imagePath, this.rect, this.color, this.transform});
+  Sprite({
+    this.image,
+    this.imagePath,
+    this.rect,
+    this.color,
+    this.transform,
+  });
 
   factory Sprite.fromJson(Map<String, dynamic> json, {String imagePath}) {
     final rect = json['rect'];

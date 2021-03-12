@@ -13,7 +13,10 @@ class Frame {
   Sprite sprite;
   double duration;
 
-  Frame({this.sprite, this.duration});
+  Frame({
+    this.sprite,
+    this.duration,
+  });
 
   factory Frame.fromJson(json, {String imagePath}) {
     final duration = json['duration'];
