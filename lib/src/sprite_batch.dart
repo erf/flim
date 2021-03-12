@@ -4,10 +4,10 @@ import 'sprite.dart';
 
 /// render a set of sprites inside a single image atlas using Canvas.drawAtlas
 class SpriteBatch {
-  Image atlas;
-  List<Rect> rects = [];
-  List<RSTransform> transforms = [];
-  List<Color> colors = [];
+  final Image atlas;
+  final List<Rect> rects = [];
+  final List<RSTransform> transforms = [];
+  final List<Color> colors = [];
 
   static const defaultBlendMode = BlendMode.srcOver;
   static const dynamic defaultCullRect = null;
