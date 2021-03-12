@@ -137,8 +137,8 @@ class AnimatedSprite {
     Transform2D? transform,
   }) {
     List<Frame> frames = [];
-    for (int row = atlasBounds.top; row < atlasBounds.height!; row++) {
-      for (int col = atlasBounds.left; col < atlasBounds.width!; col++) {
+    for (int row = atlasBounds.top; row < atlasBounds.height; row++) {
+      for (int col = atlasBounds.left; col < atlasBounds.width; col++) {
         frames.add(
           Frame(
             duration: frameDuration,
@@ -148,10 +148,10 @@ class AnimatedSprite {
               imagePath: imagePath,
               color: color,
               rect: IntRect(
-                col * spriteSize.width!,
-                row * spriteSize.height!,
-                spriteSize.width,
-                spriteSize.height,
+                left: col * spriteSize.width,
+                top: row * spriteSize.height,
+                width: spriteSize.width,
+                height: spriteSize.height,
               ),
             ),
           ),

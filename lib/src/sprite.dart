@@ -33,7 +33,12 @@ class Sprite {
   Future<Sprite> loadImage(ImageAssetCache imageAssetCache) async {
     image = await imageAssetCache.load(imagePath);
     if (rect == null) {
-      rect = IntRect(0, 0, image!.width, image!.height);
+      rect = IntRect(
+        left: 0,
+        top: 0,
+        width: image!.width,
+        height: image!.height,
+      );
     }
     return this;
   }

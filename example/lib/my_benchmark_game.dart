@@ -21,7 +21,7 @@ class MyBenchmarkGame extends Game {
       double dy = random.nextInt(size.height.toInt()).toDouble();
       final spriteFuture = Sprite(
         imagePath: 'boom3.png',
-        rect: IntRect(128 * rx, 128 * ry, 128, 128),
+        rect: IntRect.fromList([128 * rx, 128 * ry, 128, 128]),
         transform: Transform2D(
           translate: Offset(dx, dy),
           scale: 1,

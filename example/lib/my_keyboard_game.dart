@@ -23,7 +23,7 @@ class MyKeyboardGame extends Game {
   Future<Game> initialize(ImageAssetCache imageAssetCache) async {
     playerSprite = await Sprite(
       imagePath: 'rogue.png',
-      rect: IntRect(0, 0, 100, 100),
+      rect: IntRect.fromList([0, 0, 100, 100]),
       transform: Transform2D(
         anchor: Offset(50, 50),
         scale: 3,
@@ -33,8 +33,8 @@ class MyKeyboardGame extends Game {
 
     playerFireAnimation = await AnimatedSprite.fromUniformSpriteSheet(
       imagePath: 'rogue.png',
-      spriteSize: IntSize(100, 100),
-      atlasBounds: IntRect(0, 0, 10, 1),
+      spriteSize: IntSize(width: 100, height: 100),
+      atlasBounds: IntRect.fromList([0, 0, 10, 1]),
       frameDuration: 0.08,
       color: Colors.yellow,
       transform: Transform2D(
@@ -45,8 +45,8 @@ class MyKeyboardGame extends Game {
 
     boomAnimation = await AnimatedSprite.fromUniformSpriteSheet(
       imagePath: 'boom3.png',
-      spriteSize: IntSize(128, 128),
-      atlasBounds: IntRect(0, 0, 8, 8),
+      spriteSize: IntSize.fromList([128, 128]),
+      atlasBounds: IntRect.fromList([0, 0, 8, 8]),
       frameDuration: 0.02,
       transform: Transform2D(
         anchor: Offset(64, 64),

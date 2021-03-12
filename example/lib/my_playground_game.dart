@@ -32,8 +32,8 @@ class MyPlaygroundGame extends Game {
     // create a uniform sprite sheet
     rogueAnimation = await AnimatedSprite.fromUniformSpriteSheet(
       imagePath: 'rogue.png',
-      spriteSize: IntSize(100, 100),
-      atlasBounds: IntRect(0, 0, 10, 1),
+      spriteSize: IntSize.fromList([100, 100]),
+      atlasBounds: IntRect.fromList([0, 0, 10, 1]),
       frameDuration: 0.08,
       transform: Transform2D(
         translate: Offset(128 * 1.0, 450),
@@ -49,7 +49,7 @@ class MyPlaygroundGame extends Game {
 
     final rogue2 = await Sprite(
       imagePath: 'rogue.png',
-      rect: IntRect(0, 0, 100, 100),
+      rect: IntRect.fromList([0, 0, 100, 100]),
       transform: Transform2D(translate: Offset(155, 300), scale: 3),
     ).loadImage(imageAssetCache);
 

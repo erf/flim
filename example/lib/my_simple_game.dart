@@ -10,7 +10,7 @@ class MySimpleGame extends Game {
   Future<Game> initialize(ImageAssetCache imageAssetCache) async {
     final rogue = await Sprite(
       imagePath: 'rogue.png',
-      rect: IntRect(0, 0, 100, 100),
+      rect: IntRect.fromList([0, 0, 100, 100]),
       transform: Transform2D(
         translate: Offset(100, 100),
         scale: 3,
