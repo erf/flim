@@ -2,15 +2,17 @@ import 'package:example/my_benchmark_game.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flim/flim.dart';
+import 'package:asset_cache/asset_cache.dart';
 
 import 'my_game_widget.dart';
 import 'my_playground_game.dart';
 import 'my_simple_game.dart';
 import 'my_keyboard_game.dart';
 
+final imageAssetCache = ImageAssetCache(basePath: "assets/images/");
+final jsonAssetCache = JsonAssetCache(basePath: "assets/json/");
+
 void main() async {
-  imageAssetCache.basePath = "assets/images/";
-  jsonAssetCache.basePath = "assets/json/";
   runApp(MyApp());
 }
 
@@ -48,7 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget buildBenchmarkGame() {
     return FutureBuilder(
-      future: MyBenchmarkGame(MediaQuery.of(context).size).initialize(),
+      future: MyBenchmarkGame(MediaQuery.of(context).size)
+          .initialize(imageAssetCache),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return GameWidget(snapshot.data);
@@ -63,7 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Stack(
       children: [
         FutureBuilder(
-          future: MyKeyboardGame(MediaQuery.of(context).size).initialize(),
+          future: MyKeyboardGame(MediaQuery.of(context).size)
+              .initialize(imageAssetCache),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return MyGameWidget(snapshot.data);
@@ -90,7 +94,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget buildAnimationWithTwoImage() {
     return FutureBuilder(
-      future: AnimatedSprite.loadJson('animation_two_images.json'),
+      future: AnimatedSprite.loadJson(
+        'animation_two_images.json',
+        jsonAssetCache,
+        imageAssetCache,
+      ),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return GameWidget(AnimatedSpriteGame(snapshot.data));
@@ -112,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
             transform: Transform2D(
               anchor: Offset(64.0, 64.0),
             ),
-          ).loadImage(),
+          ).loadImage(imageAssetCache),
           builder: (context, snapshot) {
             return Container(
               width: 300,
@@ -127,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         ),
         FutureBuilder(
-          future: MySimpleGame().initialize(),
+          future: MySimpleGame().initialize(imageAssetCache),
           builder: (context, snapshot) {
             return Container(
               width: 200,
@@ -150,7 +158,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Stack(
       children: [
         FutureBuilder(
-          future: MyPlaygroundGame().initialize(),
+          future:
+              MyPlaygroundGame().initialize(imageAssetCache, jsonAssetCache),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return GameWidget(snapshot.data);
@@ -167,7 +176,7 @@ class _MyHomePageState extends State<MyHomePage> {
               scale: 2.0,
               rotation: 3.14 / 4.0,
             ),
-          ).loadImage(),
+          ).loadImage(imageAssetCache),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return SpriteWidget(snapshot.data);
@@ -186,7 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
             transform: Transform2D(
               translate: Offset(0.0, 128 * 2.0),
             ),
-          ).loadImages(),
+          ).loadImages(imageAssetCache),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return GameWidget(AnimatedSpriteGame(snapshot.data));

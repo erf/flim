@@ -6,8 +6,6 @@ import 'package:flutter/painting.dart';
 ///
 /// Inherit from it to update, paint, receive input and state changes in your game
 abstract class Game {
-  Future<Game> initialize();
-
   void update(double dt) {}
 
   void render(Canvas canvas) {}

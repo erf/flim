@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 import 'package:flim/flim.dart';
+import 'package:asset_cache/asset_cache.dart';
 
 class MySimpleGame extends Game {
   SpriteBatchMap spriteBatchMap = SpriteBatchMap();
 
-  @override
-  Future<Game> initialize() async {
+  Future<Game> initialize(ImageAssetCache imageAssetCache) async {
     final rogue = await Sprite(
       imagePath: 'rogue.png',
       rect: IntRect(0, 0, 100, 100),
@@ -16,7 +16,7 @@ class MySimpleGame extends Game {
         scale: 3,
         anchor: Offset(50, 50),
       ),
-    ).loadImage();
+    ).loadImage(imageAssetCache);
 
     spriteBatchMap.add(rogue);
 

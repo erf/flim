@@ -1,8 +1,9 @@
 import 'dart:ui';
 
+import 'package:asset_cache/asset_cache.dart';
+
 import 'int_rect.dart';
 import 'transform2.dart';
-import 'asset_cache.dart';
 
 /// an image rect with transformations
 class Sprite {
@@ -23,7 +24,7 @@ class Sprite {
     );
   }
 
-  Future<Sprite> loadImage() async {
+  Future<Sprite> loadImage(ImageAssetCache imageAssetCache) async {
     image = await imageAssetCache.load(imagePath);
     if (rect == null) {
       rect = IntRect(0, 0, image.width, image.height);
@@ -31,8 +32,12 @@ class Sprite {
     return this;
   }
 
-  static Future<Sprite> loadJson(String name) async {
+  static Future<Sprite> loadJson(
+    String name,
+    JsonAssetCache jsonAssetCache,
+    ImageAssetCache imageAssetCache,
+  ) async {
     final jsonSprite = await jsonAssetCache.load(name);
-    return await Sprite.fromJson(jsonSprite).loadImage();
+    return await Sprite.fromJson(jsonSprite).loadImage(imageAssetCache);
   }
 }

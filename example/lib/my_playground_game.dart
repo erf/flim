@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 import 'package:flim/flim.dart';
+import 'package:asset_cache/asset_cache.dart';
 
 import 'level.dart';
 
@@ -15,14 +16,18 @@ class MyPlaygroundGame extends Game {
 
   MyPlaygroundGame();
 
-  @override
-  Future<Game> initialize() async {
+  Future<Game> initialize(
+    ImageAssetCache imageAssetCache,
+    JsonAssetCache jsonAssetCache,
+  ) async {
     // load level with sprites and animations from json file
     level = Level.fromJson(await jsonAssetCache.load('level.json'));
 
     // load and cache sprite images
-    await Future.wait(level.sprites.map((sprite) => sprite.loadImage()));
-    await Future.wait(level.animations.map((sprite) => sprite.loadImages()));
+    await Future.wait(
+        level.sprites.map((sprite) => sprite.loadImage(imageAssetCache)));
+    await Future.wait(
+        level.animations.map((sprite) => sprite.loadImages(imageAssetCache)));
 
     // create a uniform sprite sheet
     rogueAnimation = await AnimatedSprite.fromUniformSpriteSheet(
@@ -35,26 +40,28 @@ class MyPlaygroundGame extends Game {
         anchor: Offset(50, 50),
         scale: 3.0,
       ),
-    ).loadImages();
+    ).loadImages(imageAssetCache);
 
     final angel = await Sprite(
       imagePath: 'AngelBrown.PNG',
       transform: Transform2D(translate: Offset(260, 300), scale: 3),
-    ).loadImage();
+    ).loadImage(imageAssetCache);
 
     final rogue2 = await Sprite(
       imagePath: 'rogue.png',
       rect: IntRect(0, 0, 100, 100),
       transform: Transform2D(translate: Offset(155, 300), scale: 3),
-    ).loadImage();
+    ).loadImage(imageAssetCache);
 
     spriteRendererLayer1.add(angel);
     spriteRendererLayer2.add(rogue2);
 
-    final jsonSprite = await Sprite.loadJson('sprite.json');
+    final jsonSprite =
+        await Sprite.loadJson('sprite.json', jsonAssetCache, imageAssetCache);
     spriteRendererLayer1.add(jsonSprite);
 
-    jsonAnimation = await AnimatedSprite.loadJson('animation.json');
+    jsonAnimation = await AnimatedSprite.loadJson(
+        'animation.json', jsonAssetCache, imageAssetCache);
 
     return this;
   }

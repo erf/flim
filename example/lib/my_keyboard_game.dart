@@ -2,9 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flim/flim.dart';
-import 'package:flutter/services.dart';
+import 'package:asset_cache/asset_cache.dart';
 
 class MyKeyboardGame extends Game {
   SpriteBatchMap spriteBatchMap = SpriteBatchMap();
@@ -19,8 +20,7 @@ class MyKeyboardGame extends Game {
 
   MyKeyboardGame(this.size);
 
-  @override
-  Future<Game> initialize() async {
+  Future<Game> initialize(ImageAssetCache imageAssetCache) async {
     playerSprite = await Sprite(
       imagePath: 'rogue.png',
       rect: IntRect(0, 0, 100, 100),
@@ -29,7 +29,7 @@ class MyKeyboardGame extends Game {
         scale: 3,
         translate: Offset(size.width / 2.0, size.height / 2.0),
       ),
-    ).loadImage();
+    ).loadImage(imageAssetCache);
 
     playerFireAnimation = await AnimatedSprite.fromUniformSpriteSheet(
       imagePath: 'rogue.png',
@@ -41,7 +41,7 @@ class MyKeyboardGame extends Game {
         anchor: Offset(50, 50),
         scale: 3.0,
       ),
-    ).loadImages();
+    ).loadImages(imageAssetCache);
 
     boomAnimation = await AnimatedSprite.fromUniformSpriteSheet(
       imagePath: 'boom3.png',
@@ -51,7 +51,7 @@ class MyKeyboardGame extends Game {
       transform: Transform2D(
         anchor: Offset(64, 64),
       ),
-    ).loadImages();
+    ).loadImages(imageAssetCache);
 
     return this;
   }

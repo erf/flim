@@ -1,8 +1,8 @@
 import 'dart:ui';
 
+import 'package:asset_cache/asset_cache.dart';
 import 'package:flutter/foundation.dart';
 
-import 'asset_cache.dart';
 import 'sprite.dart';
 import 'int_rect.dart';
 import 'int_size.dart';
@@ -73,15 +73,20 @@ class AnimatedSprite {
   }
 
   /// load all images in frames
-  Future<AnimatedSprite> loadImages() async {
-    await Future.wait(frames.map((frame) => frame.sprite.loadImage()));
+  Future<AnimatedSprite> loadImages(ImageAssetCache imageAssetCache) async {
+    await Future.wait(
+        frames.map((frame) => frame.sprite.loadImage(imageAssetCache)));
     return this;
   }
 
   /// load animation from json asset and load frame images
-  static Future<AnimatedSprite> loadJson(String name) async {
+  static Future<AnimatedSprite> loadJson(
+    String name,
+    JsonAssetCache jsonAssetCache,
+    ImageAssetCache imageAssetCache,
+  ) async {
     final jsonAsset = await jsonAssetCache.load(name);
-    return await AnimatedSprite.fromJson(jsonAsset).loadImages();
+    return await AnimatedSprite.fromJson(jsonAsset).loadImages(imageAssetCache);
   }
 
   /// find index for frame given time

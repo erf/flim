@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:asset_cache/asset_cache.dart';
 import 'package:flutter/painting.dart';
 
 import 'animated_sprite.dart';
@@ -13,9 +14,8 @@ class AnimatedSpriteGame extends Game {
 
   AnimatedSpriteGame(this.animatedSprite);
 
-  @override
-  Future<AnimatedSpriteGame> initialize() async {
-    await animatedSprite.loadImages();
+  Future<AnimatedSpriteGame> initialize(ImageAssetCache imageAssetCache) async {
+    await animatedSprite.loadImages(imageAssetCache);
     return this;
   }
 

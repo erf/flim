@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/painting.dart';
 
 import 'package:flim/flim.dart';
+import 'package:asset_cache/asset_cache.dart';
 
 class MyBenchmarkGame extends Game {
   SpriteBatchMap spriteBatchMap = SpriteBatchMap();
@@ -10,8 +11,7 @@ class MyBenchmarkGame extends Game {
 
   MyBenchmarkGame(this.size);
 
-  @override
-  Future<Game> initialize() async {
+  Future<Game> initialize(ImageAssetCache imageAssetCache) async {
     var random = Random();
     List<Future<Sprite>> spriteTasks = [];
     for (int i = 0; i < 2500; i++) {
@@ -27,7 +27,7 @@ class MyBenchmarkGame extends Game {
           scale: 1,
           anchor: Offset(64, 64),
         ),
-      ).loadImage();
+      ).loadImage(imageAssetCache);
       spriteTasks.add(spriteFuture);
     }
     final List<Sprite> sprites = await Future.wait(spriteTasks);
