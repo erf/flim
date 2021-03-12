@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [0.4.0] - 12 March 2021
+- use asset_cache package
+- removed internal AssetCache
+- pass AssetCache via `loadJson` or `loadImage`
+
 ## [0.3.1]
 - format code
 - minor json load improvement
