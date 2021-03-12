@@ -21,6 +21,7 @@ class Sprite {
     this.color,
   });
 
+  /// create a [Sprite] from json and an optional [imagePath]
   factory Sprite.fromJson(Map<String, dynamic> json, {String? imagePath}) {
     final rect = json['rect'];
     return Sprite(
@@ -30,6 +31,7 @@ class Sprite {
     );
   }
 
+  /// load the [image] from [imagePath] using [imageAssetCache] and return [Sprite]
   Future<Sprite> loadImage(ImageAssetCache imageAssetCache) async {
     image = await imageAssetCache.load(imagePath);
     if (rect == null) {
@@ -43,6 +45,7 @@ class Sprite {
     return this;
   }
 
+  /// load [Sprite] json and image using given [jsonAssetCache] and [imageAssetCache]
   static Future<Sprite> loadJson(
     String name,
     JsonAssetCache jsonAssetCache,
