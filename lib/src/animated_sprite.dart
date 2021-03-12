@@ -9,12 +9,12 @@ import 'transform2.dart';
 
 /// A single frame in an [AnimatedSprite] as a [Sprite] with a given duration [duration]
 class Frame {
-  Sprite? sprite;
-  double? duration;
+  final Sprite sprite;
+  final double duration;
 
   Frame({
-    this.sprite,
-    this.duration,
+    required this.sprite,
+    required this.duration,
   });
 
   factory Frame.fromJson(json, {String? imagePath}) {
@@ -42,14 +42,14 @@ class AnimatedSprite {
     this.frames = const [],
     this.index = 0,
     this.time = 0.0,
-  }) : totalTime = frames.fold(0.0, (prev, frame) => prev + frame.duration!);
+  }) : totalTime = frames.fold(0.0, (prev, frame) => prev + frame.duration);
 
   /// getter for current frame
   Frame get currentFrame => frames[index];
 
   /// return the current frame + animation transform as a sprite
   Sprite get sprite {
-    final s = currentFrame.sprite!;
+    final s = currentFrame.sprite;
     return Sprite(
       image: s.image,
       imagePath: s.imagePath,
@@ -77,7 +77,7 @@ class AnimatedSprite {
   /// load all images in frames
   Future<AnimatedSprite> loadImages(ImageAssetCache imageAssetCache) async {
     await Future.wait(
-        frames.map((Frame frame) => frame.sprite!.loadImage(imageAssetCache)));
+        frames.map((Frame frame) => frame.sprite.loadImage(imageAssetCache)));
     return this;
   }
 
@@ -95,7 +95,7 @@ class AnimatedSprite {
   int findIndex(double time) {
     double sumTime = 0.0;
     for (int i = 0; i < frames.length; i++) {
-      sumTime += frames[i].duration!;
+      sumTime += frames[i].duration;
       if (time < sumTime) {
         return i;
       }
