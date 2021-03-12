@@ -9,8 +9,8 @@ import 'my_simple_game.dart';
 import 'my_keyboard_game.dart';
 
 void main() async {
-  ImageAssets.instance.basePath = "assets/images/";
-  JsonAssets.instance.basePath = "assets/json/";
+  imageAssetCache.basePath = "assets/images/";
+  jsonAssetCache.basePath = "assets/json/";
   runApp(MyApp());
 }
 

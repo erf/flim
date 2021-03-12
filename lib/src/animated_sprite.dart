@@ -80,7 +80,7 @@ class AnimatedSprite {
 
   /// load animation from json asset and load frame images
   static Future<AnimatedSprite> loadJson(String name) async {
-    final jsonAsset = await JsonAssets.instance.load(name);
+    final jsonAsset = await jsonAssetCache.load(name);
     return await AnimatedSprite.fromJson(jsonAsset).loadImages();
   }
 

@@ -24,7 +24,7 @@ class Sprite {
   }
 
   Future<Sprite> loadImage() async {
-    image = await ImageAssets.instance.load(imagePath);
+    image = await imageAssetCache.load(imagePath);
     if (rect == null) {
       rect = IntRect(0, 0, image.width, image.height);
     }
@@ -32,7 +32,7 @@ class Sprite {
   }
 
   static Future<Sprite> loadJson(String name) async {
-    final jsonSprite = await JsonAssets.instance.load(name);
+    final jsonSprite = await jsonAssetCache.load(name);
     return await Sprite.fromJson(jsonSprite).loadImage();
   }
 }
