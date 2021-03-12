@@ -1,11 +1,14 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 import 'sprite.dart';
+import 'transform2.dart';
 
 /// render a single sprite
 class SpriteRenderer {
-  Sprite sprite;
-  Paint paint = Paint();
+  final Sprite sprite;
+  final Paint paint = Paint();
 
   SpriteRenderer(this.sprite);
 
@@ -13,14 +16,14 @@ class SpriteRenderer {
     if (sprite.color != null) {
       paint.colorFilter = ColorFilter.mode(sprite.color!, BlendMode.dstOver);
     }
-    Rect src = sprite.rect!.asRect;
-    Rect dst = Rect.fromLTWH(0, 0, src.width, src.height);
+    final Rect src = sprite.rect!.asRect;
+    final Rect dst = Rect.fromLTWH(0, 0, src.width, src.height);
+    final Transform2D transform = sprite.transform;
     canvas.save();
-    canvas.translate(
-        sprite.transform!.translate.dx, sprite.transform!.translate.dy);
-    canvas.rotate(sprite.transform!.rotation);
-    canvas.scale(sprite.transform!.scale);
-    canvas.translate(-sprite.transform!.anchor.dx, -sprite.transform!.anchor.dy);
+    canvas.translate(transform.translate.dx, transform.translate.dy);
+    canvas.rotate(transform.rotation);
+    canvas.scale(transform.scale);
+    canvas.translate(-transform.anchor.dx, -transform.anchor.dy);
     canvas.drawImageRect(sprite.image!, src, dst, paint);
     canvas.restore();
   }

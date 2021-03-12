@@ -12,14 +12,13 @@ class SpriteBatch {
   static const defaultBlendMode = BlendMode.srcOver;
   static const dynamic defaultCullRect = null;
   static final defaultPaint = Paint();
-  static final defaultTransform = RSTransform(1, 0, 0, 0);
   static const defaultColor = const Color(0x00000000); // transparent
 
   SpriteBatch(this.atlas);
 
   void add(Sprite sprite) {
     rects.add(sprite.rect!.asRect);
-    transforms.add(sprite.transform?.asRsTransform ?? defaultTransform);
+    transforms.add(sprite.transform.asRsTransform);
     colors.add(sprite.color ?? defaultColor);
   }
 
