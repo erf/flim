@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [1.0.0] - 12 March 2021
+- null-safe version !
+- code cleanup and a few API changes
+
 ## [0.4.0] - 12 March 2021
 - use asset_cache package
 - removed internal AssetCache
