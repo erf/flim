@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:asset_cache/asset_cache.dart';
-import 'package:flutter/foundation.dart';
 
 import 'sprite.dart';
 import 'int_rect.dart';
@@ -10,15 +9,15 @@ import 'transform2.dart';
 
 /// A single frame in an [AnimatedSprite] as a [Sprite] with a given duration [duration]
 class Frame {
-  Sprite sprite;
-  double duration;
+  Sprite? sprite;
+  double? duration;
 
   Frame({
     this.sprite,
     this.duration,
   });
 
-  factory Frame.fromJson(json, {String imagePath}) {
+  factory Frame.fromJson(json, {String? imagePath}) {
     final duration = json['duration'];
     return Frame(
       sprite: Sprite.fromJson(json['sprite'], imagePath: imagePath),
@@ -30,8 +29,8 @@ class Frame {
 /// An animated sprite - a list of [Frame]'s which changes over time
 class AnimatedSprite {
   /// set if all frames use same image
-  final String imagePath;
-  Transform2D transform;
+  final String? imagePath;
+  Transform2D? transform;
   final List<Frame> frames;
   int index;
   double time;
@@ -43,19 +42,19 @@ class AnimatedSprite {
     this.frames = const [],
     this.index = 0,
     this.time = 0.0,
-  }) : totalTime = frames.fold(0.0, (prev, frame) => prev + frame.duration);
+  }) : totalTime = frames.fold(0.0, (prev, frame) => prev + frame.duration!);
 
   /// getter for current frame
   Frame get currentFrame => frames[index];
 
   /// return the current frame + animation transform as a sprite
   Sprite get sprite {
-    final s = currentFrame.sprite;
+    final s = currentFrame.sprite!;
     return Sprite(
       image: s.image,
       imagePath: s.imagePath,
       rect: s.rect,
-      transform: transform + s.transform,
+      transform: transform! + s.transform!,
     );
   }
 
@@ -78,7 +77,7 @@ class AnimatedSprite {
   /// load all images in frames
   Future<AnimatedSprite> loadImages(ImageAssetCache imageAssetCache) async {
     await Future.wait(
-        frames.map((frame) => frame.sprite.loadImage(imageAssetCache)));
+        frames.map((Frame frame) => frame.sprite!.loadImage(imageAssetCache)));
     return this;
   }
 
@@ -96,7 +95,7 @@ class AnimatedSprite {
   int findIndex(double time) {
     double sumTime = 0.0;
     for (int i = 0; i < frames.length; i++) {
-      sumTime += frames[i].duration;
+      sumTime += frames[i].duration!;
       if (time < sumTime) {
         return i;
       }
@@ -130,16 +129,16 @@ class AnimatedSprite {
   /// .. could add per-frame-transform and duration
   /// .. move outside class/file?
   factory AnimatedSprite.fromUniformSpriteSheet({
-    @required String imagePath,
-    @required IntSize spriteSize,
-    @required IntRect atlasBounds,
-    @required double frameDuration,
+    required String imagePath,
+    required IntSize spriteSize,
+    required IntRect atlasBounds,
+    required double frameDuration,
     Color color = const Color(0x00000000),
-    Transform2D transform,
+    Transform2D? transform,
   }) {
     List<Frame> frames = [];
-    for (int row = atlasBounds.top; row < atlasBounds.height; row++) {
-      for (int col = atlasBounds.left; col < atlasBounds.width; col++) {
+    for (int row = atlasBounds.top; row < atlasBounds.height!; row++) {
+      for (int col = atlasBounds.left; col < atlasBounds.width!; col++) {
         frames.add(
           Frame(
             duration: frameDuration,
@@ -149,8 +148,8 @@ class AnimatedSprite {
               imagePath: imagePath,
               color: color,
               rect: IntRect(
-                col * spriteSize.width,
-                row * spriteSize.height,
+                col * spriteSize.width!,
+                row * spriteSize.height!,
                 spriteSize.width,
                 spriteSize.height,
               ),

@@ -7,21 +7,21 @@ import 'transform2.dart';
 
 /// an image rect with transformations
 class Sprite {
-  Image image;
-  String imagePath;
-  IntRect rect;
-  Color color = Color(0x00000000);
-  Transform2D transform;
+  final String imagePath;
+  Image? image;
+  IntRect? rect;
+  Color? color = Color(0x00000000);
+  Transform2D? transform;
 
   Sprite({
+    required this.imagePath,
     this.image,
-    this.imagePath,
     this.rect,
     this.color,
     this.transform,
   });
 
-  factory Sprite.fromJson(Map<String, dynamic> json, {String imagePath}) {
+  factory Sprite.fromJson(Map<String, dynamic> json, {String? imagePath}) {
     final rect = json['rect'];
     return Sprite(
       imagePath: json['imagePath'] ?? imagePath,
@@ -33,7 +33,7 @@ class Sprite {
   Future<Sprite> loadImage(ImageAssetCache imageAssetCache) async {
     image = await imageAssetCache.load(imagePath);
     if (rect == null) {
-      rect = IntRect(0, 0, image.width, image.height);
+      rect = IntRect(0, 0, image!.width, image!.height);
     }
     return this;
   }

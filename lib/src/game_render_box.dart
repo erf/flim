@@ -11,7 +11,7 @@ import 'game_loop.dart';
 /// update and paints a game
 class GameRenderBox extends RenderBox with WidgetsBindingObserver {
   Game game;
-  GameLoop gameLoop;
+  late GameLoop gameLoop;
 
   GameRenderBox(this.game) {
     gameLoop = GameLoop(_onTick);
@@ -30,14 +30,14 @@ class GameRenderBox extends RenderBox with WidgetsBindingObserver {
   @override
   void attach(PipelineOwner owner) {
     super.attach(owner);
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
     gameLoop.start();
   }
 
   @override
   void detach() {
     gameLoop.stop();
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance!.removeObserver(this);
     super.detach();
   }
 

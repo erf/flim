@@ -4,7 +4,7 @@ import 'package:flutter/scheduler.dart';
 class GameLoop {
   final Function callback;
   Duration _prev = Duration.zero;
-  Ticker _ticker;
+  late Ticker _ticker;
 
   GameLoop(this.callback) {
     _ticker = Ticker(_onTick);

@@ -4,8 +4,8 @@ import 'dart:ui';
 class IntRect {
   final int left;
   final int top;
-  final int width;
-  final int height;
+  final int? width;
+  final int? height;
 
   IntRect(this.left, this.top, this.width, this.height);
 
@@ -18,7 +18,7 @@ class IntRect {
   Rect get asRect => Rect.fromLTWH(
         left.toDouble(),
         top.toDouble(),
-        width.toDouble(),
-        height.toDouble(),
+        width!.toDouble(),
+        height!.toDouble(),
       );
 }

@@ -7,7 +7,7 @@ import 'game_render_box.dart';
 /// This a widget to embed a [Game] inside the Widget tree
 class GameWidget extends LeafRenderObjectWidget {
   final Game game;
-  final Size size;
+  final Size? size;
 
   GameWidget(this.game, {this.size});
 
