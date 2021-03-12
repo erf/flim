@@ -7,7 +7,7 @@ import 'package:flim/flim.dart';
 /// My game widget with keyboard input
 class MyGameWidget extends StatelessWidget {
   final MyKeyboardGame game;
-  final Size size;
+  final Size? size;
 
   MyGameWidget(this.game, {this.size});
 

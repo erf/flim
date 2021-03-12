@@ -10,9 +10,10 @@ class MyPlaygroundGame extends Game {
   SpriteBatchMap spriteRenderer = SpriteBatchMap();
   SpriteBatchMap spriteRendererLayer1 = SpriteBatchMap();
   SpriteBatchMap spriteRendererLayer2 = SpriteBatchMap();
-  Level level;
-  AnimatedSprite rogueAnimation;
-  AnimatedSprite jsonAnimation;
+
+  late Level level;
+  late AnimatedSprite rogueAnimation;
+  late AnimatedSprite jsonAnimation;
 
   MyPlaygroundGame();
 

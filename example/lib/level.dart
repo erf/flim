@@ -1,10 +1,13 @@
 import 'package:flim/flim.dart';
 
 class Level {
-  List<Sprite> sprites;
-  List<AnimatedSprite> animations;
+  final List<Sprite> sprites;
+  final List<AnimatedSprite> animations;
 
-  Level({this.sprites, this.animations});
+  Level({
+    required this.sprites,
+    required this.animations,
+  });
 
   factory Level.fromJson(Map<String, dynamic> json) {
     return Level(

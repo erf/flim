@@ -49,12 +49,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget buildBenchmarkGame() {
-    return FutureBuilder(
+    return FutureBuilder<Game>(
       future: MyBenchmarkGame(MediaQuery.of(context).size)
           .initialize(imageAssetCache),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return GameWidget(snapshot.data);
+          return GameWidget(snapshot.data!);
         } else {
           return Container();
         }
@@ -65,12 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget buildKeyboardGame() {
     return Stack(
       children: [
-        FutureBuilder(
+        FutureBuilder<MyKeyboardGame>(
           future: MyKeyboardGame(MediaQuery.of(context).size)
               .initialize(imageAssetCache),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return MyGameWidget(snapshot.data);
+              return MyGameWidget(snapshot.data!);
             } else {
               return Container();
             }
@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget buildAnimationWithTwoImage() {
-    return FutureBuilder(
+    return FutureBuilder<AnimatedSprite>(
       future: AnimatedSprite.loadJson(
         'animation_two_images.json',
         jsonAssetCache,
@@ -101,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return GameWidget(AnimatedSpriteGame(snapshot.data));
+          return GameWidget(AnimatedSpriteGame(snapshot.data!));
         } else {
           return Container();
         }
@@ -112,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget buildSimpleGameAndWidgets() {
     return Row(
       children: [
-        FutureBuilder(
+        FutureBuilder<Sprite>(
           future: Sprite(
             imagePath: 'boom3.PNG',
             rect: IntRect(left: 512, top: 512, width: 128, height: 128),
@@ -128,13 +128,13 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.blueAccent,
               child: Center(
                 child: snapshot.hasData
-                    ? SpriteWidget(snapshot.data)
+                    ? SpriteWidget(snapshot.data!)
                     : Container(),
               ),
             );
           },
         ),
-        FutureBuilder(
+        FutureBuilder<Game>(
           future: MySimpleGame().initialize(imageAssetCache),
           builder: (context, snapshot) {
             return Container(
@@ -143,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.redAccent,
               child: snapshot.hasData
                   ? GameWidget(
-                      snapshot.data,
+                      snapshot.data!,
                     )
                   : Container(),
             );
@@ -156,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget buildGameAndWidgets() {
     return Stack(
       children: [
-        FutureBuilder(
+        FutureBuilder<Game>(
           future: MyPlaygroundGame().initialize(
             imageAssetCache,
             jsonAssetCache,
@@ -164,14 +164,14 @@ class _MyHomePageState extends State<MyHomePage> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return GameWidget(
-                snapshot.data,
+                snapshot.data!,
               );
             } else {
               return Container();
             }
           },
         ),
-        FutureBuilder(
+        FutureBuilder<Sprite>(
           future: Sprite(
             imagePath: 'AngelBrown.PNG',
             transform: Transform2D(
@@ -183,14 +183,14 @@ class _MyHomePageState extends State<MyHomePage> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return SpriteWidget(
-                snapshot.data,
+                snapshot.data!,
               );
             } else {
               return Container();
             }
           },
         ),
-        FutureBuilder(
+        FutureBuilder<AnimatedSprite>(
           future: AnimatedSprite.fromUniformSpriteSheet(
             imagePath: 'boom3.png',
             spriteSize: IntSize(width: 128, height: 128),
@@ -204,7 +204,7 @@ class _MyHomePageState extends State<MyHomePage> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return GameWidget(
-                AnimatedSpriteGame(snapshot.data),
+                AnimatedSpriteGame(snapshot.data!),
               );
             } else {
               return Container();

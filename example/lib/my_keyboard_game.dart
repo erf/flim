@@ -8,19 +8,22 @@ import 'package:flim/flim.dart';
 import 'package:asset_cache/asset_cache.dart';
 
 class MyKeyboardGame extends Game {
-  SpriteBatchMap spriteBatchMap = SpriteBatchMap();
-  Sprite playerSprite;
-  AnimatedSprite playerFireAnimation;
-  AnimatedSprite boomAnimation;
+  final spriteBatchMap = SpriteBatchMap();
+
   Offset vel = Offset(0, 0);
   Map<String, bool> keysPressed = {};
   bool fire = false;
   Size size;
   Random random = Random();
 
+  late Sprite playerSprite;
+  late AnimatedSprite playerFireAnimation;
+  late AnimatedSprite boomAnimation;
+  late Offset dir;
+
   MyKeyboardGame(this.size);
 
-  Future<Game> initialize(ImageAssetCache imageAssetCache) async {
+  Future<MyKeyboardGame> initialize(ImageAssetCache imageAssetCache) async {
     playerSprite = await Sprite(
       imagePath: 'rogue.png',
       rect: IntRect.fromList([0, 0, 100, 100]),
@@ -57,7 +60,7 @@ class MyKeyboardGame extends Game {
   }
 
   bool isPressed(String key, Map<String, bool> keysPressed) {
-    return keysPressed.containsKey(key) ? keysPressed[key] : false;
+    return keysPressed[key] ?? false;
   }
 
   void onKey(RawKeyEvent rawKeyEvent) {
@@ -67,8 +70,6 @@ class MyKeyboardGame extends Game {
         rawKeyEvent is RawKeyDownEvent;
     //debugPrint(keysPressed.toString());
   }
-
-  Offset dir;
 
   void handleKeyboard(Map<String, bool> keysPressed) {
     dir = Offset(0, 0);
@@ -118,7 +119,6 @@ class MyKeyboardGame extends Game {
 
   @override
   void update(double dt) {
-    if (playerSprite == null) return;
     handleKeyboard(keysPressed);
     updatePlayer(dt);
   }
