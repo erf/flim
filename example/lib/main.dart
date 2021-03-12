@@ -144,7 +144,6 @@ class _MyHomePageState extends State<MyHomePage> {
               child: snapshot.hasData
                   ? GameWidget(
                       snapshot.data,
-                      size: Size(200, 200),
                     )
                   : Container(),
             );
@@ -158,11 +157,15 @@ class _MyHomePageState extends State<MyHomePage> {
     return Stack(
       children: [
         FutureBuilder(
-          future:
-              MyPlaygroundGame().initialize(imageAssetCache, jsonAssetCache),
+          future: MyPlaygroundGame().initialize(
+            imageAssetCache,
+            jsonAssetCache,
+          ),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return GameWidget(snapshot.data);
+              return GameWidget(
+                snapshot.data,
+              );
             } else {
               return Container();
             }
@@ -179,7 +182,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ).loadImage(imageAssetCache),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return SpriteWidget(snapshot.data);
+              return SpriteWidget(
+                snapshot.data,
+              );
             } else {
               return Container();
             }
@@ -198,7 +203,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ).loadImages(imageAssetCache),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return GameWidget(AnimatedSpriteGame(snapshot.data));
+              return GameWidget(
+                AnimatedSpriteGame(snapshot.data),
+              );
             } else {
               return Container();
             }
