@@ -10,7 +10,7 @@ import 'game_loop.dart';
 
 /// update and paints a game
 class GameRenderBox extends RenderBox with WidgetsBindingObserver {
-  Game game;
+  final Game game;
   late GameLoop gameLoop;
 
   GameRenderBox(this.game) {
