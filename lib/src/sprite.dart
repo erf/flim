@@ -8,17 +8,17 @@ import 'transform2.dart';
 /// an image rect with transformations
 class Sprite {
   final String imagePath;
+  Transform2D transform;
   Image? image;
   IntRect? rect;
   Color? color = Color(0x00000000);
-  Transform2D? transform;
 
   Sprite({
     required this.imagePath,
+    required this.transform,
     this.image,
     this.rect,
     this.color,
-    this.transform,
   });
 
   factory Sprite.fromJson(Map<String, dynamic> json, {String? imagePath}) {

@@ -12,7 +12,7 @@ import 'transform2.dart';
 class AnimatedSprite {
   /// set if all frames use same image
   final String? imagePath;
-  Transform2D? transform;
+  Transform2D transform;
   final List<Frame> frames;
   int index;
   double time;
@@ -20,7 +20,7 @@ class AnimatedSprite {
 
   AnimatedSprite({
     this.imagePath,
-    this.transform,
+    required this.transform,
     this.frames = const [],
     this.index = 0,
     this.time = 0.0,
@@ -36,7 +36,7 @@ class AnimatedSprite {
       image: s.image,
       imagePath: s.imagePath,
       rect: s.rect,
-      transform: transform! + s.transform!,
+      transform: transform + s.transform,
     );
   }
 
@@ -115,8 +115,8 @@ class AnimatedSprite {
     required IntSize spriteSize,
     required IntRect atlasBounds,
     required double frameDuration,
+    required Transform2D transform,
     Color color = const Color(0x00000000),
-    Transform2D? transform,
   }) {
     List<Frame> frames = [];
     for (int row = atlasBounds.top; row < atlasBounds.height; row++) {
@@ -125,7 +125,6 @@ class AnimatedSprite {
           Frame(
             duration: frameDuration,
             sprite: Sprite(
-              // TODO i don't want to set this, null should be ok
               transform: Transform2D(),
               imagePath: imagePath,
               color: color,
