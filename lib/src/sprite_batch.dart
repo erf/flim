@@ -4,7 +4,7 @@ import 'sprite.dart';
 
 /// render a set of sprites inside a single image atlas using Canvas.drawAtlas
 class SpriteBatch {
-  Image? atlas;
+  Image atlas;
   List<Rect> rects = [];
   List<RSTransform> transforms = [];
   List<Color> colors = [];
@@ -36,7 +36,7 @@ class SpriteBatch {
     Paint? paint,
   }) {
     canvas.drawAtlas(
-      atlas!,
+      atlas,
       transforms,
       rects,
       colors,

@@ -14,8 +14,8 @@ class SpriteBatchMap {
 
   /// add sprite to sprite batch map with asset name as key
   void add(Sprite sprite) {
-    final String? key = sprite.imagePath;
-    spriteBatchMap.putIfAbsent(key, () => SpriteBatch(sprite.image));
+    final String key = sprite.imagePath;
+    spriteBatchMap.putIfAbsent(key, () => SpriteBatch(sprite.image!));
     spriteBatchMap[key]!.add(sprite);
   }
 
