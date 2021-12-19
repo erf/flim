@@ -20,6 +20,8 @@ class GameLoop {
     _previous = Duration.zero;
   }
 
+  bool get isActive => _ticker.isActive;
+
   bool get muted => _ticker.muted;
 
   set muted(bool muted) => _ticker.muted = muted;
