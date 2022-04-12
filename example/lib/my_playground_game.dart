@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 import 'package:flim/flim.dart';
 import 'package:asset_cache/asset_cache.dart';

@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:asset_cache/asset_cache.dart';
-import 'package:flutter/painting.dart';
 
 import 'animated_sprite.dart';
 import 'game.dart';
