@@ -1,7 +1,6 @@
-import 'package:flim/flim.dart';
 import 'package:flutter/rendering.dart';
 
-import 'sprite.dart';
+import '../flim.dart';
 
 /// custom painter for a single sprite, used by sprite widget
 class SpritePainter extends CustomPainter {
