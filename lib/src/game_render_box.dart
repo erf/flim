@@ -26,14 +26,14 @@ class GameRenderBox extends RenderBox with WidgetsBindingObserver {
   @override
   void attach(PipelineOwner owner) {
     super.attach(owner);
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     gameLoop.start();
   }
 
   @override
   void detach() {
     gameLoop.stop();
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.detach();
   }
 
