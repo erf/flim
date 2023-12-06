@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.1.0] - 6 dec 2023
+- set sdk env > 2.18.0 <= 4.0.0
+- update asset_cache -> 2.1.0
+- add lints 3.0.1
+- add vscode example launcher
+- remove forced null check
+- fix imports
+
 ## [1.0.0] - 12 March 2021
 - null-safe version !
 - code cleanup and a few API changes
