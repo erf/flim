@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  asset_cache: ^1.0.1
+  asset_cache: ^2.0.1
 
 dev_dependencies:
   flutter_test:

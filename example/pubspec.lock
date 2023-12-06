@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: asset_cache
-      sha256: "94fcf02f5a9aa44070db98d50c42ad628018baa4ebc2622b6f7a8415975b7f38"
+      sha256: fb4b4604688eba8b3d363eaeef6ab95ee7f1db363ad96c86cfbad3f52a3d00c9
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.1"
+    version: "2.1.0"
   async:
     dependency: transitive
     description:
